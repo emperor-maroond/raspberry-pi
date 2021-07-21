@@ -1,0 +1,2 @@
+slave
+-DCATKIN_DEVEL_PREFIX=/home/devlon/Documents/ros_stuff/devel -DCMAKE_INSTALL_PREFIX=/home/devlon/Documents/ros_stuff/install -G Unix Makefiles

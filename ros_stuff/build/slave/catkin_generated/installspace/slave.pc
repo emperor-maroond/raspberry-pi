@@ -1,0 +1,8 @@
+prefix=/home/devlon/Documents/ros_stuff/install
+
+Name: slave
+Description: Description of slave
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
