@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/devlon/Documents/ros_stuff/src
+CMAKE_SOURCE_DIR = /home/devlon/Documents/raspberry-pi/ros_stuff/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/devlon/Documents/ros_stuff/build
+CMAKE_BINARY_DIR = /home/devlon/Documents/raspberry-pi/ros_stuff/build
 
 # Utility rule file for _catkin_empty_exported_target.
 
@@ -63,10 +63,10 @@ slave/CMakeFiles/_catkin_empty_exported_target.dir/build: _catkin_empty_exported
 .PHONY : slave/CMakeFiles/_catkin_empty_exported_target.dir/build
 
 slave/CMakeFiles/_catkin_empty_exported_target.dir/clean:
-	cd /home/devlon/Documents/ros_stuff/build/slave && $(CMAKE_COMMAND) -P CMakeFiles/_catkin_empty_exported_target.dir/cmake_clean.cmake
+	cd /home/devlon/Documents/raspberry-pi/ros_stuff/build/slave && $(CMAKE_COMMAND) -P CMakeFiles/_catkin_empty_exported_target.dir/cmake_clean.cmake
 .PHONY : slave/CMakeFiles/_catkin_empty_exported_target.dir/clean
 
 slave/CMakeFiles/_catkin_empty_exported_target.dir/depend:
-	cd /home/devlon/Documents/ros_stuff/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/devlon/Documents/ros_stuff/src /home/devlon/Documents/ros_stuff/src/slave /home/devlon/Documents/ros_stuff/build /home/devlon/Documents/ros_stuff/build/slave /home/devlon/Documents/ros_stuff/build/slave/CMakeFiles/_catkin_empty_exported_target.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/devlon/Documents/raspberry-pi/ros_stuff/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/devlon/Documents/raspberry-pi/ros_stuff/src /home/devlon/Documents/raspberry-pi/ros_stuff/src/slave /home/devlon/Documents/raspberry-pi/ros_stuff/build /home/devlon/Documents/raspberry-pi/ros_stuff/build/slave /home/devlon/Documents/raspberry-pi/ros_stuff/build/slave/CMakeFiles/_catkin_empty_exported_target.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : slave/CMakeFiles/_catkin_empty_exported_target.dir/depend
 

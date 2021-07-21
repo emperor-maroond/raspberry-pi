@@ -7,7 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/devlon/Documents/ros_stuff/devel:$CMAKE_PREFIX_PATH"
-export PWD='/home/devlon/Documents/ros_stuff/build'
-export ROSLISP_PACKAGE_DIRECTORIES='/home/devlon/Documents/ros_stuff/devel/share/common-lisp'
-export ROS_PACKAGE_PATH="/home/devlon/Documents/ros_stuff/src:$ROS_PACKAGE_PATH"
+export LD_LIBRARY_PATH='/opt/ros/noetic/lib'
+export PKG_CONFIG_PATH='/opt/ros/noetic/lib/pkgconfig'
+export PWD='/home/devlon/Documents/raspberry-pi/ros_stuff/build'
+export ROS_PACKAGE_PATH='/home/devlon/Documents/raspberry-pi/ros_stuff/src:/opt/ros/noetic/share'
