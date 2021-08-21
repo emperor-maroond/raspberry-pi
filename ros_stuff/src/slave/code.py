@@ -39,7 +39,7 @@ def destroy():
 if  __name__ == '__main__':
     start_pwm()
     duty_cycle(90, pwm1, 1)
-    duty_cycle(0, pwm2, 2)
+    duty_cycle(90, pwm2, 2)
     # pwm.ChangeDutyCycle(7.5)
     for i in range(0,3):
         # duty_cycle(90*i)
