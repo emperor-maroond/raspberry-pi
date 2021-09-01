@@ -13,7 +13,7 @@ rospy.init_node('some_data')
 pub_time = 100/1000
 rate = rospy.Rate(1/pub_time)
 
-ser = serial.Serial('/dev/ttyACM0', 19200, timeout = pub_time)
+ser = serial.Serial('/dev/ttyACM5', 19200, timeout = pub_time)
 
 pub = rospy.Publisher('sensor_data', my_message, queue_size=10)
 
@@ -31,9 +31,13 @@ def send_message(data):
     rate.sleep()
 
 if __name__ == '__main__':
-    try:
-        while True:
-            line = ser.readline().decode('utf-8').rstrip()
-            send_message(line)
+    try:  
+        while True:       
+            line = ser.readline().rstrip()
+            if line:
+                line = float(line.decode("utf-8"))
+                send_message(line)
     except KeyboardInterrupt:
+        ser.close()
         print("Bye bye")
+        

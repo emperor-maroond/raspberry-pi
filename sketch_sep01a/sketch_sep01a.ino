@@ -8,7 +8,6 @@ void setup() {
 void loop() {
   float volt = 0;
   volt = analogRead(ServoFeedback_R) * 3.3/1024;
-  Serial.print(volt); 
-  Serial.println("hi");
+  Serial.println(volt); 
   delay(100);
 }
