@@ -72,43 +72,46 @@ def callback(data):
     solenoid_right = data.some_floats[2]
     solenoid_left  = data.some_floats[3]
 
-    # duty_cycle(servo_right, pwm1, 1)
-    # duty_cycle(servo_left, pwm2, 2)
+    duty_cycle(servo_right, pwm1, 1)
+    duty_cycle(servo_left, pwm2, 2)
 
-    # if(solenoid_right == -1):
-    #     GPIO.output(sol1_pin, 0)
-    #     GPIO.output(sol2_pin, 1)
-    # if(solenoid_right == 0):
-    #     GPIO.output(sol1_pin, 1)
-    #     GPIO.output(sol2_pin, 1)
-    # if(solenoid_right == 1):
-    #     GPIO.output(sol1_pin, 1)
-    #     GPIO.output(sol2_pin, 0)
+    if(solenoid_right == -1):
+        GPIO.output(sol1_pin, 0)
+        GPIO.output(sol2_pin, 1)
+    if(solenoid_right == 0):
+        GPIO.output(sol1_pin, 1)
+        GPIO.output(sol2_pin, 1)
+    if(solenoid_right == 1):
+        GPIO.output(sol1_pin, 1)
+        GPIO.output(sol2_pin, 0)
 
-    # if(solenoid_left == -1):
-    #     GPIO.output(sol3_pin, 0)
-    #     GPIO.output(sol4_pin, 1)
-    # if(solenoid_left == 0):
-    #     GPIO.output(sol3_pin, 1)
-    #     GPIO.output(sol4_pin, 1)
-    # if(solenoid_left == 1):
-    #     GPIO.output(sol3_pin, 1)
-    #     GPIO.output(sol4_pin, 0)
+    if(solenoid_left == -1):
+        GPIO.output(sol3_pin, 0)
+        GPIO.output(sol4_pin, 1)
+    if(solenoid_left == 0):
+        GPIO.output(sol3_pin, 1)
+        GPIO.output(sol4_pin, 1)
+    if(solenoid_left == 1):
+        GPIO.output(sol3_pin, 1)
+        GPIO.output(sol4_pin, 0)
 
     print(servo_right)
-    print(servo_left)
-    print(solenoid_right)
-    print(solenoid_left)
+    # print(servo_left)
+    # print(solenoid_right)
+    # print(solenoid_left)
 
 def listener():
     try:
-        rospy.init_node('slave')
+        rospy.init_node('slave', disable_signals=True)
         rospy.Subscriber("chatter", my_message, callback)
-        rospy.spin()
+        # rospy.spin()
+        while not rospy.core.is_shutdown():
+            rospy.rostime.wallsleep(0.5)
     except KeyboardInterrupt:
-        # destroy()
+        destroy()
         print('Bye')
+        
 
 if __name__ == '__main__':
-    # start_pwm()
+    start_pwm()
     listener()
