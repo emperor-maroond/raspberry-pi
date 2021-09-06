@@ -19,6 +19,11 @@ servo_left     = 0.0
 solenoid_right = 0.0
 solenoid_left  = 0.0
 
+ser_R = []
+ser_L = []
+sol_R = []
+sol_L = []
+
 def start_pwm():
     global pwm1, pwm2
     GPIO.setmode(GPIO.BCM)
@@ -45,14 +50,15 @@ def start_pwm():
     GPIO.setup(sol4_pin, GPIO.OUT)
     GPIO.output(sol4_pin, 1)
 
-def duty_cycle(alpha, pwm, n):
+def duty_cycle(alpha, n):
     if n == 1:
         pw = alpha*(2-0.65)/np.pi + 0.65
     if n == 2:
         pw = alpha*(2.1-0.75)/np.pi + 0.75
     T = 1/freq * 1000
     dc = pw/T*100
-    pwm.ChangeDutyCycle(dc)
+    return dc
+    # pwm.ChangeDutyCycle(dc)
 
 def destroy():
     pwm1.stop()
@@ -67,42 +73,66 @@ def destroy():
 
 def callback(data):
     global servo_right, servo_left, solenoid_right, solenoid_left
+    global ser_R, ser_L, sol_R, sol_L
     servo_right    = data.some_floats[0]
     servo_left     = data.some_floats[1]
     solenoid_right = data.some_floats[2]
     solenoid_left  = data.some_floats[3]
+    
+    if(servo_right==-10 and servo_left==-10 and solenoid_right==-10 and solenoid_left==-10):
+        for i in range(0, len(ser_R)):
+            pwm1.ChangeDutyCycle(ser_R[i])
+            pwm2.ChangeDutyCycle(ser_L[i])
+            # ser_L[i] = abs(np.pi-ser_L[i])
+            # duty_cycle(ser_R[i], pwm1, 1)
+            # duty_cycle(ser_L[i], pwm2, 2)   
 
-    duty_cycle(servo_right, pwm1, 1)
-    duty_cycle(servo_left, pwm2, 2)
+            if(sol_R[i] == -1):
+                GPIO.output(sol1_pin, 0)
+                GPIO.output(sol2_pin, 1)
+            if(sol_R[i] == 0):
+                GPIO.output(sol1_pin, 1)
+                GPIO.output(sol2_pin, 1)
+            if(sol_R[i] == 1):
+                GPIO.output(sol1_pin, 1)
+                GPIO.output(sol2_pin, 0)
 
-    if(solenoid_right == -1):
-        GPIO.output(sol1_pin, 0)
-        GPIO.output(sol2_pin, 1)
-    if(solenoid_right == 0):
-        GPIO.output(sol1_pin, 1)
-        GPIO.output(sol2_pin, 1)
-    if(solenoid_right == 1):
-        GPIO.output(sol1_pin, 1)
-        GPIO.output(sol2_pin, 0)
+            if(sol_L[i] == -1):
+                GPIO.output(sol3_pin, 0)
+                GPIO.output(sol4_pin, 1)
+            if(sol_L[i] == 0):
+                GPIO.output(sol3_pin, 1)
+                GPIO.output(sol4_pin, 1)
+            if(sol_L[i] == 1):
+                GPIO.output(sol3_pin, 1)
+                GPIO.output(sol4_pin, 0)
 
-    if(solenoid_left == -1):
-        GPIO.output(sol3_pin, 0)
-        GPIO.output(sol4_pin, 1)
-    if(solenoid_left == 0):
-        GPIO.output(sol3_pin, 1)
-        GPIO.output(sol4_pin, 1)
-    if(solenoid_left == 1):
-        GPIO.output(sol3_pin, 1)
-        GPIO.output(sol4_pin, 0)
+            rate.sleep()
 
-    print(servo_right)
-    # print(servo_left)
-    # print(solenoid_right)
-    # print(solenoid_left)
+            print(ser_R[i])
+            # print(servo_left)
+            # print(solenoid_right)
+            # print(solenoid_left)
+
+        ser_R.clear()
+        ser_L.clear()
+        sol_R.clear()
+        sol_L.clear()
+
+    else:
+        ser_R.append(duty_cycle(servo_right, 1))
+        servo_left = abs(np.pi-servo_left)
+        ser_L.append(duty_cycle(servo_left, 2))
+        sol_R.append(solenoid_right)
+        sol_L.append(solenoid_left)
 
 def listener():
+    global rate
+
     try:
         rospy.init_node('slave', disable_signals=True)
+        ans = 10/1000
+        rate = rospy.Rate(1/ans)
         rospy.Subscriber("chatter", my_message, callback)
         # rospy.spin()
         while not rospy.core.is_shutdown():
