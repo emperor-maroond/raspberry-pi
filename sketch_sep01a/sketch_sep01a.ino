@@ -61,7 +61,8 @@ void loop() {
     Serial.print("b");
     Serial.println(volt_L/divider); 
     Serial.print("c");  
-    Serial.println(tmp1/divider*85.0/931.0+5);
+//    Serial.println(tmp1/divider*85.0/931.0+5);
+    Serial.println(tmp1/divider*4207.0/45505.0+5.76);
     Serial.print("d");  
     Serial.println(tmp2/divider*360.0/(-1440.333)*M_PI/180*0.02); 
     i = 0;

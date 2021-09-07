@@ -19,8 +19,8 @@ factory = PiGPIOFactory()
 servo_R = gpiozero.AngularServo(12, min_pulse_width=0.72/1000, max_pulse_width=2.06/1000,min_angle=0, max_angle=180 ,pin_factory=factory, frame_width=4/1000)
 servo_L = gpiozero.AngularServo(13, min_pulse_width=0.66/1000, max_pulse_width=2.05/1000,min_angle=0, max_angle=180 ,pin_factory=factory, frame_width=4/1000)
      
-servo_R.angle = None
-servo_L.angle = None
+servo_R.angle = 90
+servo_L.angle = 90
 
 sol1_pin = gpiozero.DigitalOutputDevice(5, pin_factory=factory)
 sol2_pin = gpiozero.DigitalOutputDevice(6, pin_factory=factory)
@@ -35,8 +35,8 @@ sol4_pin.off()
 # Functions_____________________________________________________________________________________________________
 
 def destroy():
-    servo_R.angle = None
-    servo_L.angle = None
+    servo_R.angle = 90
+    servo_L.angle = 90
     sol1_pin.off()
     sol2_pin.off() 
     sol3_pin.off()
@@ -51,10 +51,15 @@ def callback(data):
     servo_left     = data.some_floats[1]
     solenoid_right = data.some_floats[2]
     solenoid_left  = data.some_floats[3]
+    offset         = data.some_floats[4]
 
-    servo_R.angle = 180 - r2d(servo_right)
-    print(180 - r2d(servo_right), r2d(servo_left))
-    servo_L.angle = r2d(servo_left)
+
+    rp.loginfo(r2d(offset))
+    servo_R.angle = 180 - r2d(servo_right + offset)
+    # print(180 - r2d(servo_right), r2d(servo_left))
+    servo_L.angle = r2d(servo_left + offset)
+
+    # print(180 - r2d(servo_right + offset), r2d(servo_left + offset), r2d(offset))
 
     if(solenoid_right == -1):
         sol1_pin.on()

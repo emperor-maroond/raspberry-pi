@@ -49,26 +49,8 @@ if  __name__ == '__main__':
                 offset = tmp3
                 msg_arr.clear()
 
-            servo_R.angle = 90 - offset
-            servo_L.angle = 90 + offset
-            # print(offset)
-            cur = time() - a
-            if boom and cur>=400/1000:
-                boom = 0
-                a = time()
-                sol1_pin.off()
-                sol2_pin.on()
-                sol3_pin.off()
-                sol4_pin.on()
-            cur = time() - a
-            if not boom and cur>=400/1000:
-                a = time()
-                boom = 1
-                sol1_pin.on()
-                sol2_pin.off()
-                sol3_pin.on()
-                sol4_pin.off()
-
+            servo_R.angle = 180 - (90 + offset)
+            servo_L.angle = (90 + offset)
 
     except KeyboardInterrupt:
         ser.close()

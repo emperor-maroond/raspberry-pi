@@ -27,7 +27,7 @@ def send_message(data):
     for i in range(0, len(data)):
         message.some_floats.append(data[i])
     
-    rospy.loginfo(message)
+    # rospy.loginfo(message)
     pub.publish(message)
     message.some_floats.clear()
 
