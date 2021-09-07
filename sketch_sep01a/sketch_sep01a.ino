@@ -63,7 +63,7 @@ void loop() {
     Serial.print("c");  
     Serial.println(tmp1/divider*85.0/931.0+5);
     Serial.print("d");  
-    Serial.println(fmod(tmp2/1000.0*360.0/divider,360.0)); 
+    Serial.println(tmp2/divider*360.0/(-1440.333)*M_PI/180*0.02); 
     i = 0;
     volt_R = 0;
     volt_L = 0;
