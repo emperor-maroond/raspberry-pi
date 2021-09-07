@@ -16,7 +16,7 @@ Encoder enc1(Encoder_1A, Encoder_1B);
 Encoder enc2(Encoder_2A, Encoder_2B);
 
 void setup() {
-  Serial.begin(19200);
+  Serial.begin(9600);
   delay(500);
   analogReadRes(10);
   pinMode(V_Line, OUTPUT);
@@ -55,22 +55,22 @@ void loop() {
   tmp2 = tmp2 + pos2;
   divider ++;
   
-  if(i >= 10){
-    Serial.print("a");
-    Serial.println(volt_R/divider); 
-    Serial.print("b");
-    Serial.println(volt_L/divider); 
-    Serial.print("c");  
-//    Serial.println(tmp1/divider*85.0/931.0+5);
-    Serial.println(tmp1/divider*4207.0/45505.0+5.76);
-    Serial.print("d");  
-    Serial.println(tmp2/divider*360.0/(-1440.333)*M_PI/180*0.02); 
-    i = 0;
-    volt_R = 0;
-    volt_L = 0;
-    tmp1 = 0;
-    tmp2 = 0;
-    divider = 0;
+  if(i >= 0){
+//    Serial.print("a");
+//    Serial.println(volt_R/divider); 
+//    Serial.print("b");
+//    Serial.println(volt_L/divider); 
+//    Serial.print("c");  
+    Serial.println(pos1);
+//    Serial.println(tmp1/divider*4207.0/45505.0+5.76);
+//    Serial.print("d");  
+//    Serial.println(tmp2/divider*360.0/(-1440.333)*M_PI/180*0.02); 
+//    i = 0;
+//    volt_R = 0;
+//    volt_L = 0;
+//    tmp1 = 0;
+//    tmp2 = 0;
+//    divider = 0;
   }
 //  delay(100);
 }

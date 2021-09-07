@@ -15,7 +15,7 @@ rate = rospy.Rate(1/pub_time)
 ser = serial.Serial('/dev/ttyACM0', 19200)
 ser.flush()
 
-pub = rospy.Publisher('sensor_data', my_message, queue_size=10)
+pub = rospy.Publisher('sensor_data', my_message, queue_size=2)
 
 message = my_message()
 message.some_floats = []

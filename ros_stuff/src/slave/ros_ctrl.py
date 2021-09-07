@@ -33,6 +33,7 @@ sol3_pin.off()
 sol4_pin.off() 
 
 # Functions_____________________________________________________________________________________________________
+offset = 0
 
 def destroy():
     servo_R.angle = 90
@@ -51,13 +52,11 @@ def callback(data):
     servo_left     = data.some_floats[1]
     solenoid_right = data.some_floats[2]
     solenoid_left  = data.some_floats[3]
-    offset         = data.some_floats[4]
 
-
-    rp.loginfo(r2d(offset))
-    servo_R.angle = 180 - r2d(servo_right + offset)
+    # rp.loginfo(r2d(offset))
+    servo_R.angle = 180 - (r2d(servo_right) + offset)
     # print(180 - r2d(servo_right), r2d(servo_left))
-    servo_L.angle = r2d(servo_left + offset)
+    servo_L.angle = r2d(servo_left) + offset
 
     # print(180 - r2d(servo_right + offset), r2d(servo_left + offset), r2d(offset))
 
@@ -81,10 +80,15 @@ def callback(data):
 
     # rate.sleep()
 
+def feedback(info):
+    global offset
+    offset = info.some_floats[2]
+    # rp.loginfo(info)
 
 def listener():
     try:
         rp.Subscriber("chatter", my_message, callback)
+        rp.Subscriber("sensor_data", my_message, feedback)
         while not rp.core.is_shutdown():
             rp.rostime.wallsleep(0.5)
     except KeyboardInterrupt:

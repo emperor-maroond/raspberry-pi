@@ -15,6 +15,12 @@ sol4_pin = gpiozero.DigitalOutputDevice(26, pin_factory=factory)
      
 if  __name__ == '__main__':
     try:
+        # time.sleep(3)
+        # sol1_pin.off() # IN
+        # sol2_pin.on() # OUT
+        # sol3_pin.off() # IN
+        # sol4_pin.on() # OUT
+        # time.sleep(160/1000)
         sol1_pin.off() # IN
         sol2_pin.off() # OUT
         sol3_pin.off() # IN
