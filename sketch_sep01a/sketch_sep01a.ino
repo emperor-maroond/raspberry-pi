@@ -55,13 +55,13 @@ void loop() {
   tmp2 = tmp2 + pos2;
   divider ++;
   
-  if(i >= 50){
+  if(i >= 10){
     Serial.print("a");
     Serial.println(volt_R/divider); 
     Serial.print("b");
     Serial.println(volt_L/divider); 
     Serial.print("c");  
-    Serial.println((tmp1/1000.0*360.0)/divider+5);
+    Serial.println(tmp1/divider*85.0/931.0+5);
     Serial.print("d");  
     Serial.println(fmod(tmp2/1000.0*360.0/divider,360.0)); 
     i = 0;

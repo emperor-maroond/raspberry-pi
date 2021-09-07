@@ -8,7 +8,7 @@ from my_message.msg import my_message
 
 # Set-up ROS and serial connection___________________________________________________________________________
 rospy.init_node('some_data')
-pub_time = 5/1000
+pub_time = 10/1000
 rate = rospy.Rate(1/pub_time)
 
 # ser = serial.Serial('/dev/ttyACM5', 19200)
@@ -31,7 +31,7 @@ def send_message(data):
     pub.publish(message)
     message.some_floats.clear()
 
-    rate.sleep()
+    # rate.sleep()
 
 if __name__ == '__main__':
     try:  

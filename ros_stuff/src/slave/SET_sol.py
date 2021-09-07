@@ -15,10 +15,10 @@ sol4_pin = gpiozero.DigitalOutputDevice(26, pin_factory=factory)
      
 if  __name__ == '__main__':
     try:
-        sol1_pin.off()
-        sol2_pin.off()
-        sol3_pin.off()
-        sol4_pin.off()
+        sol1_pin.off() # IN
+        sol2_pin.off() # OUT
+        sol3_pin.off() # IN
+        sol4_pin.off() # OUT
     except KeyboardInterrupt:
         # pass
         pass

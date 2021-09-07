@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+
 import numpy as np
 import rospy as rp
 import serial
@@ -13,9 +16,9 @@ rate = rp.Rate(1/pub_time)
 
 factory = PiGPIOFactory()
 
-servo_R = gpiozero.AngularServo(12, min_pulse_width=0.76/1000, max_pulse_width=2.095/1000,min_angle=0, max_angle=180 ,pin_factory=factory, frame_width=4/1000)
-servo_L = gpiozero.AngularServo(13, min_pulse_width=0.72/1000, max_pulse_width=2.11/1000,min_angle=0, max_angle=180 ,pin_factory=factory, frame_width=4/1000)
-
+servo_R = gpiozero.AngularServo(12, min_pulse_width=0.72/1000, max_pulse_width=2.06/1000,min_angle=0, max_angle=180 ,pin_factory=factory, frame_width=4/1000)
+servo_L = gpiozero.AngularServo(13, min_pulse_width=0.66/1000, max_pulse_width=2.05/1000,min_angle=0, max_angle=180 ,pin_factory=factory, frame_width=4/1000)
+     
 servo_R.angle = None
 servo_L.angle = None
 
@@ -49,8 +52,9 @@ def callback(data):
     solenoid_right = data.some_floats[2]
     solenoid_left  = data.some_floats[3]
 
-    servo_R.angle = servo_right
-    servo_L.angle = servo_left
+    servo_R.angle = 180 - r2d(servo_right)
+    print(180 - r2d(servo_right), r2d(servo_left))
+    servo_L.angle = r2d(servo_left)
 
     if(solenoid_right == -1):
         sol1_pin.on()
