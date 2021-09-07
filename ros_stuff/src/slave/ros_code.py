@@ -9,8 +9,11 @@ from my_message.msg import my_message
 
 factory = PiGPIOFactory()
 
-servo_R = gpiozero.AngularServo(12, min_pulse_width=0.81/1000, max_pulse_width=2.18/1000,min_angle=0, max_angle=180 ,pin_factory=factory)
-servo_L = gpiozero.AngularServo(13, min_pulse_width=0.735/1000, max_pulse_width=2.13/1000,min_angle=0, max_angle=180 ,pin_factory=factory)
+servo_R = gpiozero.AngularServo(12, min_pulse_width=0.785/1000, max_pulse_width=2.095/1000,min_angle=0, max_angle=180 ,pin_factory=factory, frame_width=4/1000)
+servo_L = gpiozero.AngularServo(13, min_pulse_width=0.72/1000, max_pulse_width=2.09/1000,min_angle=0, max_angle=180 ,pin_factory=factory, frame_width=4/1000)
+
+servo_R.angle = None
+servo_L.angle = None
 
 sol1_pin = gpiozero.DigitalOutputDevice(5, pin_factory=factory)
 sol2_pin = gpiozero.DigitalOutputDevice(6, pin_factory=factory)
@@ -59,24 +62,24 @@ def callback(data):
             servo_L.angle = ser_L[i]
 
             if(sol_R[i] == -1):
-                sol1_pin.off()
-                sol2_pin.on()
+                sol1_pin.on()
+                sol2_pin.off()
             if(sol_R[i] == 0):
-                sol1_pin.on()
-                sol2_pin.on()
+                sol1_pin.off()
+                sol2_pin.off()
             if(sol_R[i] == 1):
-                sol1_pin.on()
-                sol2_pin.off()                
+                sol1_pin.off()
+                sol2_pin.on()                
 
             if(sol_L[i] == -1):
-                sol3_pin.off()
-                sol4_pin.on()                
+                sol3_pin.on()
+                sol4_pin.off()                
             if(sol_L[i] == 0):
-                sol3_pin.on()
-                sol4_pin.on()                
+                sol3_pin.off()
+                sol4_pin.off()                
             if(sol_L[i] == 1):
-                sol3_pin.on()
-                sol4_pin.off()                 
+                sol3_pin.off()
+                sol4_pin.on()                 
 
             rate.sleep()
 

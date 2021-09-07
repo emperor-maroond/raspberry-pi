@@ -10,10 +10,10 @@ from my_message.msg import my_message
 
 # Set-up ROS and serial connection___________________________________________________________________________
 rospy.init_node('some_data')
-pub_time = 100/1000
-rate = rospy.Rate(1/pub_time)
+# pub_time = 100/1000
+# rate = rospy.Rate(1/pub_time)
 
-ser = serial.Serial('/dev/ttyACM5', 19200, timeout = pub_time)
+ser = serial.Serial('/dev/ttyACM5', 19200)
 ser.flush()
 
 pub = rospy.Publisher('sensor_data', my_message, queue_size=10)
@@ -32,7 +32,7 @@ def send_message(data):
     pub.publish(message)
     message.some_floats.clear()
 
-    rate.sleep()
+    # rate.sleep()
 
 if __name__ == '__main__':
     try:  

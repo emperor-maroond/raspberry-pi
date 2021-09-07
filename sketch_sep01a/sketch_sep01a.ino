@@ -30,13 +30,11 @@ void loop() {
     pos2 = new2;
   }
   
-//  float volt_R = analogRead(ServoFeedback_R) * 3.3/1024;
-//  float volt_L = analogRead(ServoFeedback_L) * 3.3/1024;
-//  Serial.println(volt_R); 
-//  Serial.println(volt_L); 
-  Serial.print("Encoder 1:");
+  float volt_R = analogRead(ServoFeedback_R) * -180/561 + 260.8557;
+  float volt_L = analogRead(ServoFeedback_L) * -180/585 + 259.0769 ;
+  Serial.println(volt_R); 
+  Serial.println(volt_L); 
   Serial.println(pos1);
-  Serial.print("Encoder 2:");
   Serial.println(pos2); 
   
 //  delay(100);
