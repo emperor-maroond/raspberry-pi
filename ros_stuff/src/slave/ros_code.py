@@ -2,17 +2,20 @@
 
 import numpy as np
 import rospy
-import RPi.GPIO as GPIO
+import gpiozero
 
+from gpiozero.pins.pigpio import PiGPIOFactory
 from my_message.msg import my_message
 
-freq = 200
-PWM1_pin = 13
-PWM2_pin = 12 # GPIO 12
-sol1_pin = 5
-sol2_pin = 6
-sol3_pin = 19
-sol4_pin = 26
+factory = PiGPIOFactory()
+
+servo_R = gpiozero.AngularServo(12, min_pulse_width=0.81/1000, max_pulse_width=2.18/1000,min_angle=0, max_angle=180 ,pin_factory=factory)
+servo_L = gpiozero.AngularServo(13, min_pulse_width=0.735/1000, max_pulse_width=2.13/1000,min_angle=0, max_angle=180 ,pin_factory=factory)
+
+sol1_pin = gpiozero.DigitalOutputDevice(5, pin_factory=factory)
+sol2_pin = gpiozero.DigitalOutputDevice(6, pin_factory=factory)
+sol3_pin = gpiozero.DigitalOutputDevice(19, pin_factory=factory)
+sol4_pin = gpiozero.DigitalOutputDevice(26, pin_factory=factory)
 
 servo_right    = 0.0
 servo_left     = 0.0
@@ -23,32 +26,6 @@ ser_R = []
 ser_L = []
 sol_R = []
 sol_L = []
-
-def start_pwm():
-    global pwm1, pwm2
-    GPIO.setmode(GPIO.BCM)
-
-    GPIO.setup(PWM1_pin, GPIO.OUT)
-    GPIO.output(PWM1_pin, 0)
-    pwm1 = GPIO.PWM(PWM1_pin, freq)
-    pwm1.start(0)
-
-    GPIO.setup(PWM2_pin, GPIO.OUT)
-    GPIO.output(PWM2_pin, 0)
-    pwm2 = GPIO.PWM(PWM2_pin, freq)
-    pwm2.start(0)
-
-    GPIO.setup(sol1_pin, GPIO.OUT)
-    GPIO.output(sol1_pin, 1)
-
-    GPIO.setup(sol2_pin, GPIO.OUT)
-    GPIO.output(sol2_pin, 1)
-    
-    GPIO.setup(sol3_pin, GPIO.OUT)
-    GPIO.output(sol3_pin, 1)
-    
-    GPIO.setup(sol4_pin, GPIO.OUT)
-    GPIO.output(sol4_pin, 1)
 
 def duty_cycle(alpha, n):
     if n == 1:
@@ -61,15 +38,12 @@ def duty_cycle(alpha, n):
     # pwm.ChangeDutyCycle(dc)
 
 def destroy():
-    pwm1.stop()
-    pwm2.stop()
-    GPIO.output(PWM1_pin, 0)
-    GPIO.output(PWM2_pin, 0)
-    GPIO.output(sol1_pin, 0)
-    GPIO.output(sol2_pin, 0)
-    GPIO.output(sol3_pin, 0)
-    GPIO.output(sol4_pin, 0)
-    GPIO.cleanup()
+    servo_R.angle = None
+    servo_L.angle = None
+    sol1_pin.value = None
+    sol2_pin.value = None 
+    sol3_pin.value = None
+    sol4_pin.value = None 
 
 def callback(data):
     global servo_right, servo_left, solenoid_right, solenoid_left
@@ -80,32 +54,29 @@ def callback(data):
     solenoid_left  = data.some_floats[3]
     
     if(servo_right==-10 and servo_left==-10 and solenoid_right==-10 and solenoid_left==-10):
-        for i in range(0, len(ser_R)):
-            pwm1.ChangeDutyCycle(ser_R[i])
-            pwm2.ChangeDutyCycle(ser_L[i])
-            # ser_L[i] = abs(np.pi-ser_L[i])
-            # duty_cycle(ser_R[i], pwm1, 1)
-            # duty_cycle(ser_L[i], pwm2, 2)   
+        for i in range(0, len(ser_R)):         
+            servo_R.angle = ser_R[i]
+            servo_L.angle = ser_L[i]
 
             if(sol_R[i] == -1):
-                GPIO.output(sol1_pin, 0)
-                GPIO.output(sol2_pin, 1)
+                sol1_pin.off()
+                sol2_pin.on()
             if(sol_R[i] == 0):
-                GPIO.output(sol1_pin, 1)
-                GPIO.output(sol2_pin, 1)
+                sol1_pin.on()
+                sol2_pin.on()
             if(sol_R[i] == 1):
-                GPIO.output(sol1_pin, 1)
-                GPIO.output(sol2_pin, 0)
+                sol1_pin.on()
+                sol2_pin.off()                
 
             if(sol_L[i] == -1):
-                GPIO.output(sol3_pin, 0)
-                GPIO.output(sol4_pin, 1)
+                sol3_pin.off()
+                sol4_pin.on()                
             if(sol_L[i] == 0):
-                GPIO.output(sol3_pin, 1)
-                GPIO.output(sol4_pin, 1)
+                sol3_pin.on()
+                sol4_pin.on()                
             if(sol_L[i] == 1):
-                GPIO.output(sol3_pin, 1)
-                GPIO.output(sol4_pin, 0)
+                sol3_pin.on()
+                sol4_pin.off()                 
 
             rate.sleep()
 
@@ -120,9 +91,11 @@ def callback(data):
         sol_L.clear()
 
     else:
-        ser_R.append(duty_cycle(servo_right, 1))
+        # ser_R.append(duty_cycle(servo_right, 1))
+        ser_R.append(servo_right * 180/np.pi)
         servo_left = abs(np.pi-servo_left)
-        ser_L.append(duty_cycle(servo_left, 2))
+        # ser_L.append(duty_cycle(servo_left, 2))
+        ser_L.append(servo_left * 180/np.pi)
         sol_R.append(solenoid_right)
         sol_L.append(solenoid_left)
 
@@ -143,5 +116,4 @@ def listener():
         
 
 if __name__ == '__main__':
-    start_pwm()
     listener()
