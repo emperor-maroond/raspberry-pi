@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
+import numpy as np
 import RPi.GPIO as GPIO
 import time
  
-freq = 100
+freq = 250
 PWM1_pin = 13
 PWM2_pin = 12 # GPIO 12
  
@@ -37,12 +38,16 @@ def destroy():
     GPIO.cleanup()
      
 if  __name__ == '__main__':
-    start_pwm()
-    duty_cycle(90, pwm1, 1)
-    duty_cycle(90, pwm2, 2)
-    # pwm.ChangeDutyCycle(7.5)
-    for i in range(0,3):
-        # duty_cycle(90*i)
-        time.sleep(1)
-        print(90*i)
-    destroy()
+    try:
+        start_pwm()
+        duty_cycle(90, pwm1, 1)
+        duty_cycle(90, pwm2, 2)
+        # pwm.ChangeDutyCycle(7.5)
+        for i in range(0,180):
+            duty_cycle(90, pwm1, 2)
+            duty_cycle(90, pwm2, 1)
+            time.sleep(0.1)
+            print(i)
+        destroy()
+    except KeyboardInterrupt:
+        destroy()

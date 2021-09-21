@@ -6,7 +6,7 @@ import RPi.GPIO as GPIO
 
 from my_message.msg import my_message
 
-freq = 100
+freq = 200
 PWM1_pin = 13
 PWM2_pin = 12 # GPIO 12
 sol1_pin = 5
