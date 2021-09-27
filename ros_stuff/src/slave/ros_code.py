@@ -27,15 +27,15 @@ ser_L = []
 sol_R = []
 sol_L = []
 
-def duty_cycle(alpha, n):
-    if n == 1:
-        pw = alpha*(2-0.65)/np.pi + 0.65
-    if n == 2:
-        pw = alpha*(2.1-0.75)/np.pi + 0.75
-    T = 1/freq * 1000
-    dc = pw/T*100
-    return dc
-    # pwm.ChangeDutyCycle(dc)
+# def duty_cycle(alpha, n):
+#     if n == 1:
+#         pw = alpha*(2-0.65)/np.pi + 0.65
+#     if n == 2:
+#         pw = alpha*(2.1-0.75)/np.pi + 0.75
+#     T = 1/freq * 1000
+#     dc = pw/T*100
+#     return dc
+#     # pwm.ChangeDutyCycle(dc)
 
 def destroy():
     servo_R.angle = None
