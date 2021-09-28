@@ -1,3 +1,4 @@
+#define ENCODER_OPTIMIZE_INTERRUPTS
 #include <Encoder.h>
 
 #define ServoFeedback_R A9
@@ -7,8 +8,8 @@
 #define Encoder_2A 8 // A3
 #define Encoder_2B 9 // A2
 
-Encoder enc1(5, 6);
-Encoder enc2(8, 9);
+Encoder enc1(Encoder_1A, Encoder_1B);
+Encoder enc2(Encoder_2A, Encoder_2B);
 
 void setup() {
   Serial.begin(19200);
@@ -29,11 +30,13 @@ void loop() {
     pos2 = new2;
   }
   
-  float volt_R = analogRead(ServoFeedback_R) * 3.3/1024;
-  float volt_L = analogRead(ServoFeedback_L) * 3.3/1024;
-  Serial.println(volt_R); 
-  Serial.println(volt_L); 
+//  float volt_R = analogRead(ServoFeedback_R) * 3.3/1024;
+//  float volt_L = analogRead(ServoFeedback_L) * 3.3/1024;
+//  Serial.println(volt_R); 
+//  Serial.println(volt_L); 
+  Serial.print("Encoder 1:");
   Serial.println(pos1);
+  Serial.print("Encoder 2:");
   Serial.println(pos2); 
   
 //  delay(100);
