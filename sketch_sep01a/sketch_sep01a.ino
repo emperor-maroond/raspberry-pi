@@ -19,6 +19,7 @@ void setup() {
 
 long pos1 = -999;
 long pos2 = -999;
+elapsedMillis i = 0;
 
 void loop() {
   long new1, new2; 
@@ -31,11 +32,18 @@ void loop() {
   }
   
   float volt_R = analogRead(ServoFeedback_R) * -180/561 + 260.8557;
-  float volt_L = analogRead(ServoFeedback_L) * -180/585 + 259.0769 ;
-  Serial.println(volt_R); 
-  Serial.println(volt_L); 
-  Serial.println(pos1);
-  Serial.println(pos2); 
+  float volt_L = analogRead(ServoFeedback_L) * -180/585 + 259.0769;
   
+  if(i >= 10){
+    Serial.print("a");
+    Serial.println(volt_R); 
+    Serial.print("b");
+    Serial.println(volt_L); 
+    Serial.print("c");  
+    Serial.println(pos1);
+    Serial.print("d");  
+    Serial.println(pos2); 
+    i = 0;
+  }
 //  delay(100);
 }
