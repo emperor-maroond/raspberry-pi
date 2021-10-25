@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
-from operator import le
 import numpy as np
-from genpy import message
 import rospy
 import serial
 
@@ -13,8 +11,8 @@ rospy.init_node('some_data')
 pub_time = 100/1000
 rate = rospy.Rate(1/pub_time)
 
-# ser = serial.Serial('/dev/ttyACM5', 19200)
-ser = serial.Serial('/dev/ttyACM0', 19200)
+ser = serial.Serial('/dev/ttyACM5', 19200)
+# ser = serial.Serial('/dev/ttyACM0', 19200)
 ser.flush()
 
 pub = rospy.Publisher('sensor_data', my_message, queue_size=10)

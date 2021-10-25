@@ -3,10 +3,23 @@
 import numpy as np
 import rospy
 import gpiozero
+import serial
 
 from gpiozero.pins.pigpio import PiGPIOFactory
 from my_message.msg import my_message
 
+# Serial set-up_______________________________________________________
+ser = serial.Serial('/dev/ttyACM5', 19200)
+# ser = serial.Serial('/dev/ttyACM0', 19200)
+ser.flush()
+
+# Publisher and publish-message set-up________________________________
+# pub = rospy.Publisher('sensor_data', my_message, queue_size=10)
+
+# pub_msg = my_message()
+# pub_msg.some_floats = []
+
+# GPIO set-up_________________________________________________________
 factory = PiGPIOFactory()
 
 servo_R = gpiozero.AngularServo(12, min_pulse_width=0.785/1000, max_pulse_width=2.095/1000,min_angle=0, max_angle=180 ,pin_factory=factory, frame_width=4/1000)
@@ -25,7 +38,7 @@ sol2_pin.off()
 sol3_pin.off()
 sol4_pin.off() 
 
-
+# Intitialize some variables__________________________________________
 servo_right    = 0.0
 servo_left     = 0.0
 solenoid_right = 0.0
@@ -36,15 +49,30 @@ ser_L = []
 sol_R = []
 sol_L = []
 
-# def duty_cycle(alpha, n):
-#     if n == 1:
-#         pw = alpha*(2-0.65)/np.pi + 0.65
-#     if n == 2:
-#         pw = alpha*(2.1-0.75)/np.pi + 0.75
-#     T = 1/freq * 1000
-#     dc = pw/T*100
-#     return dc
-#     # pwm.ChangeDutyCycle(dc)
+data_arr = []
+
+# The functions_______________________________________________________
+def read_sensors():
+    line = ser.readline().rstrip()
+    if line:
+        line = line.decode("utf-8").rstrip('\r')
+        if line[0] == 'a':
+            tmp1 = float(line[1:])
+            # msg_arr.append(tmp)
+        if line[0] == 'b':
+            tmp2 = float(line[1:])
+            # msg_arr.append(tmp)
+        if line[0] == 'c':
+            tmp3 = float(line[1:])
+            # msg_arr.append(tmp)
+        if line[0] == 'd':
+            tmp4 = float(line[1:])
+            data_arr.append(tmp1)
+            data_arr.append(tmp2)
+            data_arr.append(tmp3)
+            data_arr.append(tmp4)
+    if len(data_arr) == 4:
+        data_arr.clear()
 
 def destroy():
     servo_R.angle = None
@@ -57,6 +85,9 @@ def destroy():
 def callback(data):
     global servo_right, servo_left, solenoid_right, solenoid_left
     global ser_R, ser_L, sol_R, sol_L
+
+    read_sensors()
+
     servo_right    = data.some_floats[0]
     servo_left     = data.some_floats[1]
     solenoid_right = data.some_floats[2]
@@ -115,7 +146,7 @@ def listener():
 
     try:
         rospy.init_node('slave', disable_signals=True)
-        ans = 25/1000
+        ans = 10/1000
         rate = rospy.Rate(1/ans)
         rospy.Subscriber("chatter", my_message, callback)
         # rospy.spin()
@@ -125,6 +156,6 @@ def listener():
         destroy()
         print('Bye')
         
-
+# Main code___________________________________________________________
 if __name__ == '__main__':
     listener()
