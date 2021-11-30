@@ -8,11 +8,11 @@ from my_message.msg import my_message
 
 # Set-up ROS and serial connection___________________________________________________________________________
 rospy.init_node('some_data')
-pub_time = 100/1000
+pub_time = 5/1000
 rate = rospy.Rate(1/pub_time)
 
-ser = serial.Serial('/dev/ttyACM5', 19200)
-# ser = serial.Serial('/dev/ttyACM0', 19200)
+# ser = serial.Serial('/dev/ttyACM5', 19200)
+ser = serial.Serial('/dev/ttyACM0', 19200)
 ser.flush()
 
 pub = rospy.Publisher('sensor_data', my_message, queue_size=10)
