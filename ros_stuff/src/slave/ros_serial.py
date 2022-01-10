@@ -50,12 +50,15 @@ if __name__ == '__main__':
                     # msg_arr.append(tmp)
                 if line[0] == 'd':
                     tmp4 = float(line[1:])
+                if line[0] == 'e':
+                    tmp5 = float(line[1:])
                     msg_arr.append(tmp1)
                     msg_arr.append(tmp2)
                     msg_arr.append(tmp3)
                     msg_arr.append(tmp4)
+                    msg_arr.append(tmp5)
                 # print(line)
-            if len(msg_arr)==4:
+            if len(msg_arr)==5:
                 send_message(msg_arr)
                 msg_arr.clear()
     except KeyboardInterrupt:

@@ -15,11 +15,11 @@ rate = rp.Rate(1/pub_time)
 
 factory = PiGPIOFactory()
 
-servo_R = gpiozero.AngularServo(12, min_pulse_width=0.72/1000, max_pulse_width=2.06/1000,min_angle=0, max_angle=180 ,pin_factory=factory, frame_width=4/1000)
+servo_R = gpiozero.AngularServo(12, min_pulse_width=0.75/1000, max_pulse_width=2.1/1000,min_angle=0, max_angle=180 ,pin_factory=factory, frame_width=4/1000)
 servo_L = gpiozero.AngularServo(13, min_pulse_width=0.657/1000, max_pulse_width=2.06/1000,min_angle=0, max_angle=180 ,pin_factory=factory, frame_width=4/1000)
      
-servo_R.angle = 90
-servo_L.angle = 90
+servo_R.angle = 180 - (90-20)
+servo_L.angle = 90+20
 
 sol1_pin = gpiozero.DigitalOutputDevice(5, pin_factory=factory)
 sol2_pin = gpiozero.DigitalOutputDevice(6, pin_factory=factory)
@@ -33,14 +33,14 @@ sol4_pin.off()
 
 # Functions_____________________________________________________________________________________________________
 offset = 0
-servo_right    = np.pi/2 #np.pi/2
-servo_left     = np.pi/2 #np.pi/2
+servo_right    = np.pi/180*(90-20) #np.pi/2
+servo_left     = np.pi/180*(90+20) #np.pi/2
 solenoid_right = -1
 solenoid_left  = -1
 
 def destroy():
-    servo_R.angle = 90
-    servo_L.angle = 90
+    servo_R.angle = 180 - (90-20)
+    servo_L.angle = 90+20
     sol1_pin.off()
     sol2_pin.off() 
     sol3_pin.off()
@@ -61,6 +61,8 @@ def callback(data):
 def feedback(info):
     global offset
     offset = info.some_floats[2]
+
+    # print(info.some_floats[0], info.some_floats[1], info.some_floats[2], info.some_floats[3],info.some_floats[4])
 
     servo_R.angle = 180 - (r2d(servo_right) + offset)
     servo_L.angle = r2d(servo_left) + offset
