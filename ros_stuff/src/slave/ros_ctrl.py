@@ -10,13 +10,13 @@ from my_message.msg import my_message
 
 # Set-up ROS and serial connection and PINS_____________________________________________________________________
 rp.init_node('slave', disable_signals=True)
-pub_time = 10/1000
+pub_time = 5/1000
 rate = rp.Rate(1/pub_time)
 
 factory = PiGPIOFactory()
 
 servo_R = gpiozero.AngularServo(12, min_pulse_width=0.72/1000, max_pulse_width=2.06/1000,min_angle=0, max_angle=180 ,pin_factory=factory, frame_width=4/1000)
-servo_L = gpiozero.AngularServo(13, min_pulse_width=0.66/1000, max_pulse_width=2.05/1000,min_angle=0, max_angle=180 ,pin_factory=factory, frame_width=4/1000)
+servo_L = gpiozero.AngularServo(13, min_pulse_width=0.657/1000, max_pulse_width=2.06/1000,min_angle=0, max_angle=180 ,pin_factory=factory, frame_width=4/1000)
      
 servo_R.angle = 90
 servo_L.angle = 90
@@ -33,14 +33,14 @@ sol4_pin.off()
 
 # Functions_____________________________________________________________________________________________________
 offset = 0
-servo_right    = 90 #np.pi/2
-servo_left     = 90 #np.pi/2
-solenoid_right = 0
-solenoid_left  = 0
+servo_right    = np.pi/2 #np.pi/2
+servo_left     = np.pi/2 #np.pi/2
+solenoid_right = -1
+solenoid_left  = -1
 
 def destroy():
-    servo_R.angle = None
-    servo_L.angle = None
+    servo_R.angle = 90
+    servo_L.angle = 90
     sol1_pin.off()
     sol2_pin.off() 
     sol3_pin.off()
@@ -62,8 +62,8 @@ def feedback(info):
     global offset
     offset = info.some_floats[2]
 
-    servo_R.angle = 180 - ((servo_right) + offset)
-    servo_L.angle = (servo_left) + offset
+    servo_R.angle = 180 - (r2d(servo_right) + offset)
+    servo_L.angle = r2d(servo_left) + offset
 
     if(solenoid_right == -1):
         sol1_pin.on()

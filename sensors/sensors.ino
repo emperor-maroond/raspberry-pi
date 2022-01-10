@@ -59,7 +59,7 @@ void loop() {
   tmp2 = tmp2 + pos2;
   divider ++;
   
-  if(i >= 15){
+  if(i >= 10){
     Serial.print("a");
     Serial.println(180 - volt_R/divider); 
     Serial.print("b");

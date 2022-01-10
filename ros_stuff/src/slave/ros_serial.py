@@ -8,14 +8,14 @@ from my_message.msg import my_message
 
 # Set-up ROS and serial connection___________________________________________________________________________
 rospy.init_node('some_data')
-pub_time = 10/1000
+pub_time = 5/1000
 rate = rospy.Rate(1/pub_time)
 
 # ser = serial.Serial('/dev/ttyACM5', 19200)
 ser = serial.Serial('/dev/ttyACM0', 9600)
 ser.flush()
 
-pub = rospy.Publisher('sensor_data', my_message, queue_size=2)
+pub = rospy.Publisher('sensor_data', my_message, queue_size=1)
 
 message = my_message()
 message.some_floats = []
