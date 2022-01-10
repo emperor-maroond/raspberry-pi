@@ -33,8 +33,8 @@ sol4_pin.off()
 
 # Functions_____________________________________________________________________________________________________
 offset = 0
-servo_right    = np.pi/2
-servo_left     = np.pi/2
+servo_right    = 90 #np.pi/2
+servo_left     = 90 #np.pi/2
 solenoid_right = 0
 solenoid_left  = 0
 
@@ -62,8 +62,8 @@ def feedback(info):
     global offset
     offset = info.some_floats[2]
 
-    servo_R.angle = 180 - (r2d(servo_right) + offset)
-    servo_L.angle = r2d(servo_left) + offset
+    servo_R.angle = 180 - ((servo_right) + offset)
+    servo_L.angle = (servo_left) + offset
 
     if(solenoid_right == -1):
         sol1_pin.on()
