@@ -1,5 +1,6 @@
 #define ENCODER_OPTIMIZE_INTERRUPTS
 #include <Encoder.h>
+#include <math.h>
 
 #define ServoFeedback_R A9
 #define ServoFeedback_L A8
@@ -8,6 +9,9 @@
 #define Encoder_2A 8 // A3
 #define Encoder_2B 9 // A2
 
+#define V_Line 0
+#define Reset_Enc 12
+
 Encoder enc1(Encoder_1A, Encoder_1B);
 Encoder enc2(Encoder_2A, Encoder_2B);
 
@@ -15,11 +19,20 @@ void setup() {
   Serial.begin(19200);
   delay(500);
   analogReadRes(10);
+  pinMode(V_Line, OUTPUT);
+  pinMode(Reset_Enc, INPUT);
+  digitalWrite(V_Line, LOW);
 }
 
 long pos1 = -999;
 long pos2 = -999;
 elapsedMillis i = 0;
+
+float volt_R = 0;
+float volt_L = 0;
+float tmp1 = 0;
+float tmp2 = 0;
+float divider = 0;
 
 void loop() {
   long new1, new2; 
@@ -31,19 +44,32 @@ void loop() {
     pos2 = new2;
   }
   
-  float volt_R = analogRead(ServoFeedback_R) * -180/561 + 260.8557;
-  float volt_L = analogRead(ServoFeedback_L) * -180/585 + 259.0769;
+  if(digitalRead(Reset_Enc) == LOW){
+    enc1.write(0);
+    enc2.write(0);
+  }
   
-  if(i >= 10){
+  volt_R = volt_R + analogRead(ServoFeedback_R) * -180/561.0 + 260.8557;
+  volt_L = volt_L + analogRead(ServoFeedback_L) * -180/585.0 + 259.0769;
+  tmp1 = tmp1 + pos1;
+  tmp2 = tmp2 + pos2;
+  divider ++;
+  
+  if(i >= 50){
     Serial.print("a");
-    Serial.println(volt_R); 
+    Serial.println(volt_R/divider); 
     Serial.print("b");
-    Serial.println(volt_L); 
+    Serial.println(volt_L/divider); 
     Serial.print("c");  
-    Serial.println(pos1);
+    Serial.println((tmp1/1000.0*360.0)/divider+5);
     Serial.print("d");  
-    Serial.println(pos2); 
+    Serial.println(fmod(tmp2/1000.0*360.0/divider,360.0)); 
     i = 0;
+    volt_R = 0;
+    volt_L = 0;
+    tmp1 = 0;
+    tmp2 = 0;
+    divider = 0;
   }
 //  delay(100);
 }
