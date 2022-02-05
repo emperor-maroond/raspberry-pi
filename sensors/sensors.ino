@@ -8,6 +8,7 @@
 #define Encoder_1B 6 // A5
 #define Encoder_2A 8 // A3
 #define Encoder_2B 9 // A2
+#define LED 13
 
 #define V_Line 0
 #define Reset_Enc 12
@@ -19,8 +20,10 @@ void setup() {
   Serial.begin(9600);
   delay(500);
   analogReadRes(10);
+  pinMode(LED, OUTPUT);
   pinMode(V_Line, OUTPUT);
   pinMode(Reset_Enc, INPUT);
+  digitalWrite(LED, HIGH);
   digitalWrite(V_Line, LOW);
 }
 

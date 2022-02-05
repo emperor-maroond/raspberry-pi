@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/devlon/Documents/raspberry-pi/ros_stuff/devel/lib/python3/dist-packages/my_message/msg/__init__.py"
-  "/home/devlon/Documents/raspberry-pi/ros_stuff/devel/lib/python3/dist-packages/my_message/msg/_my_message.py"
+  "/home/pi/raspberry-pi/ros_stuff/devel/lib/python3/dist-packages/my_message/msg/__init__.py"
+  "/home/pi/raspberry-pi/ros_stuff/devel/lib/python3/dist-packages/my_message/msg/_my_message.py"
   "CMakeFiles/my_message_generate_messages_py"
 )
 

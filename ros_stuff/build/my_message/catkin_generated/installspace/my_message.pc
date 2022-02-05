@@ -1,4 +1,4 @@
-prefix=/home/devlon/Documents/raspberry-pi/ros_stuff/install
+prefix=/home/pi/raspberry-pi/ros_stuff/install
 
 Name: my_message
 Description: Description of my_message

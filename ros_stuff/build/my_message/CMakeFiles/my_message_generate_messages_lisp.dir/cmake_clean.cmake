@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "/home/devlon/Documents/raspberry-pi/ros_stuff/devel/share/common-lisp/ros/my_message/msg/my_message.lisp"
+  "/home/pi/raspberry-pi/ros_stuff/devel/share/common-lisp/ros/my_message/msg/my_message.lisp"
   "CMakeFiles/my_message_generate_messages_lisp"
 )
 

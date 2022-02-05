@@ -1,8 +1,8 @@
-# Install script for directory: /home/devlon/Documents/raspberry-pi/ros_stuff/src/slave
+# Install script for directory: /home/pi/raspberry-pi/ros_stuff/src/slave
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/devlon/Documents/raspberry-pi/ros_stuff/install")
+  set(CMAKE_INSTALL_PREFIX "/home/pi/raspberry-pi/ros_stuff/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -37,18 +37,23 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
+# Set default install directory permissions.
+if(NOT DEFINED CMAKE_OBJDUMP)
+  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+endif()
+
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/devlon/Documents/raspberry-pi/ros_stuff/build/slave/catkin_generated/installspace/slave.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/pi/raspberry-pi/ros_stuff/build/slave/catkin_generated/installspace/slave.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/slave/cmake" TYPE FILE FILES
-    "/home/devlon/Documents/raspberry-pi/ros_stuff/build/slave/catkin_generated/installspace/slaveConfig.cmake"
-    "/home/devlon/Documents/raspberry-pi/ros_stuff/build/slave/catkin_generated/installspace/slaveConfig-version.cmake"
+    "/home/pi/raspberry-pi/ros_stuff/build/slave/catkin_generated/installspace/slaveConfig.cmake"
+    "/home/pi/raspberry-pi/ros_stuff/build/slave/catkin_generated/installspace/slaveConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/slave" TYPE FILE FILES "/home/devlon/Documents/raspberry-pi/ros_stuff/src/slave/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/slave" TYPE FILE FILES "/home/pi/raspberry-pi/ros_stuff/src/slave/package.xml")
 endif()
 

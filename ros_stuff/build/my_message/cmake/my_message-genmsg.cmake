@@ -2,13 +2,11 @@
 
 message(STATUS "my_message: 1 messages, 0 services")
 
-set(MSG_I_FLAGS "-Imy_message:/home/devlon/Documents/raspberry-pi/ros_stuff/src/my_message/msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg")
+set(MSG_I_FLAGS "-Imy_message:/home/pi/raspberry-pi/ros_stuff/src/my_message/msg;-Istd_msgs:/usr/share/std_msgs/cmake/../msg")
 
 # Find all generators
 find_package(gencpp REQUIRED)
-find_package(geneus REQUIRED)
 find_package(genlisp REQUIRED)
-find_package(gennodejs REQUIRED)
 find_package(genpy REQUIRED)
 
 add_custom_target(my_message_generate_messages ALL)
@@ -17,19 +15,19 @@ add_custom_target(my_message_generate_messages ALL)
 
 
 
-get_filename_component(_filename "/home/devlon/Documents/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
+get_filename_component(_filename "/home/pi/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
 add_custom_target(_my_message_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "my_message" "/home/devlon/Documents/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" ""
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "my_message" "/home/pi/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" ""
 )
 
 #
-#  langs = gencpp;geneus;genlisp;gennodejs;genpy
+#  langs = gencpp;genlisp;genpy
 #
 
 ### Section generating for lang: gencpp
 ### Generating Messages
 _generate_msg_cpp(my_message
-  "/home/devlon/Documents/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg"
+  "/home/pi/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/my_message
@@ -49,7 +47,7 @@ add_custom_target(my_message_generate_messages_cpp
 add_dependencies(my_message_generate_messages my_message_generate_messages_cpp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/devlon/Documents/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
+get_filename_component(_filename "/home/pi/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
 add_dependencies(my_message_generate_messages_cpp _my_message_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -59,43 +57,10 @@ add_dependencies(my_message_gencpp my_message_generate_messages_cpp)
 # register target for catkin_package(EXPORTED_TARGETS)
 list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS my_message_generate_messages_cpp)
 
-### Section generating for lang: geneus
-### Generating Messages
-_generate_msg_eus(my_message
-  "/home/devlon/Documents/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/my_message
-)
-
-### Generating Services
-
-### Generating Module File
-_generate_module_eus(my_message
-  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/my_message
-  "${ALL_GEN_OUTPUT_FILES_eus}"
-)
-
-add_custom_target(my_message_generate_messages_eus
-  DEPENDS ${ALL_GEN_OUTPUT_FILES_eus}
-)
-add_dependencies(my_message_generate_messages my_message_generate_messages_eus)
-
-# add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/devlon/Documents/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
-add_dependencies(my_message_generate_messages_eus _my_message_generate_messages_check_deps_${_filename})
-
-# target for backward compatibility
-add_custom_target(my_message_geneus)
-add_dependencies(my_message_geneus my_message_generate_messages_eus)
-
-# register target for catkin_package(EXPORTED_TARGETS)
-list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS my_message_generate_messages_eus)
-
 ### Section generating for lang: genlisp
 ### Generating Messages
 _generate_msg_lisp(my_message
-  "/home/devlon/Documents/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg"
+  "/home/pi/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/my_message
@@ -115,7 +80,7 @@ add_custom_target(my_message_generate_messages_lisp
 add_dependencies(my_message_generate_messages my_message_generate_messages_lisp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/devlon/Documents/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
+get_filename_component(_filename "/home/pi/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
 add_dependencies(my_message_generate_messages_lisp _my_message_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -125,43 +90,10 @@ add_dependencies(my_message_genlisp my_message_generate_messages_lisp)
 # register target for catkin_package(EXPORTED_TARGETS)
 list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS my_message_generate_messages_lisp)
 
-### Section generating for lang: gennodejs
-### Generating Messages
-_generate_msg_nodejs(my_message
-  "/home/devlon/Documents/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/my_message
-)
-
-### Generating Services
-
-### Generating Module File
-_generate_module_nodejs(my_message
-  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/my_message
-  "${ALL_GEN_OUTPUT_FILES_nodejs}"
-)
-
-add_custom_target(my_message_generate_messages_nodejs
-  DEPENDS ${ALL_GEN_OUTPUT_FILES_nodejs}
-)
-add_dependencies(my_message_generate_messages my_message_generate_messages_nodejs)
-
-# add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/devlon/Documents/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
-add_dependencies(my_message_generate_messages_nodejs _my_message_generate_messages_check_deps_${_filename})
-
-# target for backward compatibility
-add_custom_target(my_message_gennodejs)
-add_dependencies(my_message_gennodejs my_message_generate_messages_nodejs)
-
-# register target for catkin_package(EXPORTED_TARGETS)
-list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS my_message_generate_messages_nodejs)
-
 ### Section generating for lang: genpy
 ### Generating Messages
 _generate_msg_py(my_message
-  "/home/devlon/Documents/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg"
+  "/home/pi/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/my_message
@@ -181,7 +113,7 @@ add_custom_target(my_message_generate_messages_py
 add_dependencies(my_message_generate_messages my_message_generate_messages_py)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/devlon/Documents/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
+get_filename_component(_filename "/home/pi/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
 add_dependencies(my_message_generate_messages_py _my_message_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -204,17 +136,6 @@ if(TARGET std_msgs_generate_messages_cpp)
   add_dependencies(my_message_generate_messages_cpp std_msgs_generate_messages_cpp)
 endif()
 
-if(geneus_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/my_message)
-  # install generated code
-  install(
-    DIRECTORY ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/my_message
-    DESTINATION ${geneus_INSTALL_DIR}
-  )
-endif()
-if(TARGET std_msgs_generate_messages_eus)
-  add_dependencies(my_message_generate_messages_eus std_msgs_generate_messages_eus)
-endif()
-
 if(genlisp_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/my_message)
   # install generated code
   install(
@@ -224,17 +145,6 @@ if(genlisp_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/
 endif()
 if(TARGET std_msgs_generate_messages_lisp)
   add_dependencies(my_message_generate_messages_lisp std_msgs_generate_messages_lisp)
-endif()
-
-if(gennodejs_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/my_message)
-  # install generated code
-  install(
-    DIRECTORY ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/my_message
-    DESTINATION ${gennodejs_INSTALL_DIR}
-  )
-endif()
-if(TARGET std_msgs_generate_messages_nodejs)
-  add_dependencies(my_message_generate_messages_nodejs std_msgs_generate_messages_nodejs)
 endif()
 
 if(genpy_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/my_message)

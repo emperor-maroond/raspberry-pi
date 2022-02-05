@@ -66,17 +66,10 @@ endif()
 set(my_message_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
-if("FALSE" STREQUAL "TRUE")
-  set(my_message_SOURCE_PREFIX /home/devlon/Documents/raspberry-pi/ros_stuff/src/my_message)
-  set(my_message_DEVEL_PREFIX /home/devlon/Documents/raspberry-pi/ros_stuff/devel)
-  set(my_message_INSTALL_PREFIX "")
-  set(my_message_PREFIX ${my_message_DEVEL_PREFIX})
-else()
-  set(my_message_SOURCE_PREFIX "")
-  set(my_message_DEVEL_PREFIX "")
-  set(my_message_INSTALL_PREFIX /home/devlon/Documents/raspberry-pi/ros_stuff/install)
-  set(my_message_PREFIX ${my_message_INSTALL_PREFIX})
-endif()
+set(my_message_SOURCE_PREFIX )
+set(my_message_DEVEL_PREFIX )
+set(my_message_INSTALL_PREFIX /home/pi/raspberry-pi/ros_stuff/install)
+set(my_message_PREFIX ${my_message_INSTALL_PREFIX})
 
 # warn when using a deprecated package
 if(NOT "" STREQUAL "")
@@ -104,6 +97,9 @@ if(NOT "include " STREQUAL " ")
   foreach(idir ${_include_dirs})
     if(IS_ABSOLUTE ${idir} AND IS_DIRECTORY ${idir})
       set(include ${idir})
+    # don't try to guess include dir if we installed into the default
+    elseif("/home/pi/raspberry-pi/ros_stuff/install" STREQUAL "/usr")
+      continue()
     elseif("${idir} " STREQUAL "include ")
       get_filename_component(include "${my_message_DIR}/../../../include" ABSOLUTE)
       if(NOT IS_DIRECTORY ${include})
@@ -112,7 +108,9 @@ if(NOT "include " STREQUAL " ")
     else()
       message(FATAL_ERROR "Project 'my_message' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '\${prefix}/${idir}'.  ${_report}")
     endif()
+    if(NOT "${include}" STREQUAL "/usr/include")
     _list_append_unique(my_message_INCLUDE_DIRS ${include})
+    endif()
   endforeach()
 endif()
 
@@ -154,7 +152,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/devlon/Documents/raspberry-pi/ros_stuff/install/lib;/home/devlon/Documents/raspberry-pi/ros_stuff/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/pi/raspberry-pi/ros_stuff/install/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
@@ -177,7 +175,7 @@ foreach(library ${libraries})
   endif()
 endforeach()
 
-set(my_message_EXPORTED_TARGETS "my_message_generate_messages_cpp;my_message_generate_messages_eus;my_message_generate_messages_lisp;my_message_generate_messages_nodejs;my_message_generate_messages_py")
+set(my_message_EXPORTED_TARGETS "my_message_generate_messages_cpp;my_message_generate_messages_lisp;my_message_generate_messages_py")
 # create dummy targets for exported code generation targets to make life of users easier
 foreach(t ${my_message_EXPORTED_TARGETS})
   if(NOT TARGET ${t})
@@ -211,7 +209,7 @@ foreach(depend ${depends})
   _unpack_libraries_with_build_configuration(my_message_LIBRARIES ${my_message_LIBRARIES})
 
   _list_append_unique(my_message_LIBRARY_DIRS ${${my_message_dep}_LIBRARY_DIRS})
-  _list_append_deduplicate(my_message_EXPORTED_TARGETS ${${my_message_dep}_EXPORTED_TARGETS})
+  list(APPEND my_message_EXPORTED_TARGETS ${${my_message_dep}_EXPORTED_TARGETS})
 endforeach()
 
 set(pkg_cfg_extras "my_message-msg-extras.cmake")

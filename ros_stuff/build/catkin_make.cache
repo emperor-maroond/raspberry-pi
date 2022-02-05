@@ -1,2 +1,2 @@
 my_message:slave
--DCATKIN_DEVEL_PREFIX=/home/devlon/Documents/raspberry-pi/ros_stuff/devel -DCMAKE_INSTALL_PREFIX=/home/devlon/Documents/raspberry-pi/ros_stuff/install -G Unix Makefiles
+-DCATKIN_DEVEL_PREFIX=/home/pi/raspberry-pi/ros_stuff/devel -DCMAKE_INSTALL_PREFIX=/home/pi/raspberry-pi/ros_stuff/install -G Unix Makefiles

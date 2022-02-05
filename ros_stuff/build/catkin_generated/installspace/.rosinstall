@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/devlon/Documents/raspberry-pi/ros_stuff/install/setup.sh
+    local-name: /home/pi/raspberry-pi/ros_stuff/install/setup.sh

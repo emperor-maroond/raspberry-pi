@@ -1,8 +1,8 @@
-# Install script for directory: /home/devlon/Documents/raspberry-pi/ros_stuff/src/my_message
+# Install script for directory: /home/pi/raspberry-pi/ros_stuff/src/my_message
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/devlon/Documents/raspberry-pi/ros_stuff/install")
+  set(CMAKE_INSTALL_PREFIX "/home/pi/raspberry-pi/ros_stuff/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -37,54 +37,51 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_message/msg" TYPE FILE FILES "/home/devlon/Documents/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg")
+# Set default install directory permissions.
+if(NOT DEFINED CMAKE_OBJDUMP)
+  set(CMAKE_OBJDUMP "/usr/bin/objdump")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_message/cmake" TYPE FILE FILES "/home/devlon/Documents/raspberry-pi/ros_stuff/build/my_message/catkin_generated/installspace/my_message-msg-paths.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_message/msg" TYPE FILE FILES "/home/pi/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/devlon/Documents/raspberry-pi/ros_stuff/devel/include/my_message")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_message/cmake" TYPE FILE FILES "/home/pi/raspberry-pi/ros_stuff/build/my_message/catkin_generated/installspace/my_message-msg-paths.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/devlon/Documents/raspberry-pi/ros_stuff/devel/share/roseus/ros/my_message")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/pi/raspberry-pi/ros_stuff/devel/include/my_message")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/devlon/Documents/raspberry-pi/ros_stuff/devel/share/common-lisp/ros/my_message")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/pi/raspberry-pi/ros_stuff/devel/share/common-lisp/ros/my_message")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/devlon/Documents/raspberry-pi/ros_stuff/devel/share/gennodejs/ros/my_message")
+  execute_process(COMMAND "/usr/bin/python3" -m compileall "/home/pi/raspberry-pi/ros_stuff/devel/lib/python3/dist-packages/my_message")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  execute_process(COMMAND "/usr/bin/python3" -m compileall "/home/devlon/Documents/raspberry-pi/ros_stuff/devel/lib/python3/dist-packages/my_message")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3/dist-packages" TYPE DIRECTORY FILES "/home/pi/raspberry-pi/ros_stuff/devel/lib/python3/dist-packages/my_message")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3/dist-packages" TYPE DIRECTORY FILES "/home/devlon/Documents/raspberry-pi/ros_stuff/devel/lib/python3/dist-packages/my_message")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/pi/raspberry-pi/ros_stuff/build/my_message/catkin_generated/installspace/my_message.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/devlon/Documents/raspberry-pi/ros_stuff/build/my_message/catkin_generated/installspace/my_message.pc")
-endif()
-
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_message/cmake" TYPE FILE FILES "/home/devlon/Documents/raspberry-pi/ros_stuff/build/my_message/catkin_generated/installspace/my_message-msg-extras.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_message/cmake" TYPE FILE FILES "/home/pi/raspberry-pi/ros_stuff/build/my_message/catkin_generated/installspace/my_message-msg-extras.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_message/cmake" TYPE FILE FILES
-    "/home/devlon/Documents/raspberry-pi/ros_stuff/build/my_message/catkin_generated/installspace/my_messageConfig.cmake"
-    "/home/devlon/Documents/raspberry-pi/ros_stuff/build/my_message/catkin_generated/installspace/my_messageConfig-version.cmake"
+    "/home/pi/raspberry-pi/ros_stuff/build/my_message/catkin_generated/installspace/my_messageConfig.cmake"
+    "/home/pi/raspberry-pi/ros_stuff/build/my_message/catkin_generated/installspace/my_messageConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_message" TYPE FILE FILES "/home/devlon/Documents/raspberry-pi/ros_stuff/src/my_message/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_message" TYPE FILE FILES "/home/pi/raspberry-pi/ros_stuff/src/my_message/package.xml")
 endif()
 
