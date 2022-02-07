@@ -66,8 +66,8 @@ endif()
 set(slave_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
-set(slave_SOURCE_PREFIX /home/pi/raspberry-pi/ros_stuff/src/slave)
-set(slave_DEVEL_PREFIX /home/pi/raspberry-pi/ros_stuff/devel)
+set(slave_SOURCE_PREFIX /home/devlon/raspberry-pi/ros_stuff/src/slave)
+set(slave_DEVEL_PREFIX /home/devlon/raspberry-pi/ros_stuff/devel)
 set(slave_INSTALL_PREFIX )
 set(slave_PREFIX ${slave_DEVEL_PREFIX})
 
@@ -106,7 +106,7 @@ if(NOT " " STREQUAL " ")
         message(FATAL_ERROR "Project 'slave' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'slave' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/pi/raspberry-pi/ros_stuff/src/slave/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'slave' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/devlon/raspberry-pi/ros_stuff/src/slave/${idir}'.  ${_report}")
     endif()
     if(NOT "${include}" STREQUAL "/usr/include")
     _list_append_unique(slave_INCLUDE_DIRS ${include})
@@ -152,7 +152,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/pi/raspberry-pi/ros_stuff/devel/lib)
+    foreach(path /home/devlon/raspberry-pi/ros_stuff/devel/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

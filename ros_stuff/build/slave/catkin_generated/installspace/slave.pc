@@ -1,4 +1,4 @@
-prefix=/home/pi/raspberry-pi/ros_stuff/install
+prefix=/home/devlon/raspberry-pi/ros_stuff/install
 
 Name: slave
 Description: Description of slave

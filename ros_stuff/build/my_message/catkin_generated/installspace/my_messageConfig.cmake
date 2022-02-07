@@ -68,7 +68,7 @@ set(my_message_CONFIG_INCLUDED TRUE)
 # set variables for source/devel/install prefixes
 set(my_message_SOURCE_PREFIX )
 set(my_message_DEVEL_PREFIX )
-set(my_message_INSTALL_PREFIX /home/pi/raspberry-pi/ros_stuff/install)
+set(my_message_INSTALL_PREFIX /home/devlon/raspberry-pi/ros_stuff/install)
 set(my_message_PREFIX ${my_message_INSTALL_PREFIX})
 
 # warn when using a deprecated package
@@ -98,7 +98,7 @@ if(NOT "include " STREQUAL " ")
     if(IS_ABSOLUTE ${idir} AND IS_DIRECTORY ${idir})
       set(include ${idir})
     # don't try to guess include dir if we installed into the default
-    elseif("/home/pi/raspberry-pi/ros_stuff/install" STREQUAL "/usr")
+    elseif("/home/devlon/raspberry-pi/ros_stuff/install" STREQUAL "/usr")
       continue()
     elseif("${idir} " STREQUAL "include ")
       get_filename_component(include "${my_message_DIR}/../../../include" ABSOLUTE)
@@ -152,7 +152,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/pi/raspberry-pi/ros_stuff/install/lib)
+    foreach(path /home/devlon/raspberry-pi/ros_stuff/install/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

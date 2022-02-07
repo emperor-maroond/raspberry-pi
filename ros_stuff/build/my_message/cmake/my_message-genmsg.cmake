@@ -2,7 +2,7 @@
 
 message(STATUS "my_message: 1 messages, 0 services")
 
-set(MSG_I_FLAGS "-Imy_message:/home/pi/raspberry-pi/ros_stuff/src/my_message/msg;-Istd_msgs:/usr/share/std_msgs/cmake/../msg")
+set(MSG_I_FLAGS "-Imy_message:/home/devlon/raspberry-pi/ros_stuff/src/my_message/msg;-Istd_msgs:/usr/share/std_msgs/cmake/../msg")
 
 # Find all generators
 find_package(gencpp REQUIRED)
@@ -15,9 +15,9 @@ add_custom_target(my_message_generate_messages ALL)
 
 
 
-get_filename_component(_filename "/home/pi/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
+get_filename_component(_filename "/home/devlon/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
 add_custom_target(_my_message_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "my_message" "/home/pi/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" ""
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "my_message" "/home/devlon/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" ""
 )
 
 #
@@ -27,7 +27,7 @@ add_custom_target(_my_message_generate_messages_check_deps_${_filename}
 ### Section generating for lang: gencpp
 ### Generating Messages
 _generate_msg_cpp(my_message
-  "/home/pi/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg"
+  "/home/devlon/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/my_message
@@ -47,7 +47,7 @@ add_custom_target(my_message_generate_messages_cpp
 add_dependencies(my_message_generate_messages my_message_generate_messages_cpp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/pi/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
+get_filename_component(_filename "/home/devlon/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
 add_dependencies(my_message_generate_messages_cpp _my_message_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -60,7 +60,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS my_message_generate_messages_cpp)
 ### Section generating for lang: genlisp
 ### Generating Messages
 _generate_msg_lisp(my_message
-  "/home/pi/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg"
+  "/home/devlon/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/my_message
@@ -80,7 +80,7 @@ add_custom_target(my_message_generate_messages_lisp
 add_dependencies(my_message_generate_messages my_message_generate_messages_lisp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/pi/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
+get_filename_component(_filename "/home/devlon/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
 add_dependencies(my_message_generate_messages_lisp _my_message_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -93,7 +93,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS my_message_generate_messages_lisp)
 ### Section generating for lang: genpy
 ### Generating Messages
 _generate_msg_py(my_message
-  "/home/pi/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg"
+  "/home/devlon/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/my_message
@@ -113,7 +113,7 @@ add_custom_target(my_message_generate_messages_py
 add_dependencies(my_message_generate_messages my_message_generate_messages_py)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/pi/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
+get_filename_component(_filename "/home/devlon/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg" NAME_WE)
 add_dependencies(my_message_generate_messages_py _my_message_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

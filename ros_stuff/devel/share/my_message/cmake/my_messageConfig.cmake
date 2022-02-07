@@ -66,8 +66,8 @@ endif()
 set(my_message_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
-set(my_message_SOURCE_PREFIX /home/pi/raspberry-pi/ros_stuff/src/my_message)
-set(my_message_DEVEL_PREFIX /home/pi/raspberry-pi/ros_stuff/devel)
+set(my_message_SOURCE_PREFIX /home/devlon/raspberry-pi/ros_stuff/src/my_message)
+set(my_message_DEVEL_PREFIX /home/devlon/raspberry-pi/ros_stuff/devel)
 set(my_message_INSTALL_PREFIX )
 set(my_message_PREFIX ${my_message_DEVEL_PREFIX})
 
@@ -84,9 +84,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(my_message_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/pi/raspberry-pi/ros_stuff/devel/include " STREQUAL " ")
+if(NOT "/home/devlon/raspberry-pi/ros_stuff/devel/include " STREQUAL " ")
   set(my_message_INCLUDE_DIRS "")
-  set(_include_dirs "/home/pi/raspberry-pi/ros_stuff/devel/include")
+  set(_include_dirs "/home/devlon/raspberry-pi/ros_stuff/devel/include")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -106,7 +106,7 @@ if(NOT "/home/pi/raspberry-pi/ros_stuff/devel/include " STREQUAL " ")
         message(FATAL_ERROR "Project 'my_message' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'my_message' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/pi/raspberry-pi/ros_stuff/src/my_message/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'my_message' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/devlon/raspberry-pi/ros_stuff/src/my_message/${idir}'.  ${_report}")
     endif()
     if(NOT "${include}" STREQUAL "/usr/include")
     _list_append_unique(my_message_INCLUDE_DIRS ${include})
@@ -152,7 +152,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/pi/raspberry-pi/ros_stuff/devel/lib)
+    foreach(path /home/devlon/raspberry-pi/ros_stuff/devel/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

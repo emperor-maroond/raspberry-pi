@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "/home/pi/raspberry-pi/ros_stuff/devel/include/my_message/my_message.h"
+  "/home/devlon/raspberry-pi/ros_stuff/devel/include/my_message/my_message.h"
   "CMakeFiles/my_message_generate_messages_cpp"
 )
 
