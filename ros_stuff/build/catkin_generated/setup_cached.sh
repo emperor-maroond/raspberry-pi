@@ -5,10 +5,9 @@
 # it emulates the modifications of the setup script without recurring computations
 
 # new environment variables
-export CMAKE_PREFIX_PATH="/home/devlon/raspberry-pi/ros_stuff/devel"
-export LD_LIBRARY_PATH=""
-export PKG_CONFIG_PATH=""
-export PYTHONPATH=""
 
 # modified environment variables
-export PWD="/home/devlon/raspberry-pi/ros_stuff/build"
+export CMAKE_PREFIX_PATH="/home/devlon/raspberry-pi/ros_stuff/devel:$CMAKE_PREFIX_PATH"
+export PWD='/home/devlon/raspberry-pi/ros_stuff/build'
+export ROSLISP_PACKAGE_DIRECTORIES='/home/devlon/raspberry-pi/ros_stuff/devel/share/common-lisp'
+export ROS_PACKAGE_PATH="/home/devlon/raspberry-pi/ros_stuff/src:$ROS_PACKAGE_PATH"

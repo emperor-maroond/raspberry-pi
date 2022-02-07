@@ -12,7 +12,7 @@ pub_time = 10/1000
 rate = rospy.Rate(1/pub_time)
 
 # ser = serial.Serial('/dev/ttyACM5', 19200)
-ser = serial.Serial('/dev/ttyACM0', 19200)
+ser = serial.Serial('/dev/ttyACM0', 9600)
 ser.flush()
 
 pub = rospy.Publisher('sensor_data', my_message, queue_size=2)

@@ -56,6 +56,40 @@ CMAKE_BINARY_DIR = /home/devlon/raspberry-pi/ros_stuff/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -79,17 +113,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
@@ -101,39 +124,16 @@ test/fast: test
 
 .PHONY : test/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
 
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,94 +168,34 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-my_message/CMakeFiles/my_message_genpy.dir/rule:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_genpy.dir/rule
-.PHONY : my_message/CMakeFiles/my_message_genpy.dir/rule
+my_message/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+.PHONY : my_message/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-my_message_genpy: my_message/CMakeFiles/my_message_genpy.dir/rule
+rosgraph_msgs_generate_messages_py: my_message/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
 
-.PHONY : my_message_genpy
+.PHONY : rosgraph_msgs_generate_messages_py
 
 # fast build rule for target.
-my_message_genpy/fast:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_genpy.dir/build.make my_message/CMakeFiles/my_message_genpy.dir/build
-.PHONY : my_message_genpy/fast
+rosgraph_msgs_generate_messages_py/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make my_message/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+.PHONY : rosgraph_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-my_message/CMakeFiles/my_message_generate_messages_py.dir/rule:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_generate_messages_py.dir/rule
-.PHONY : my_message/CMakeFiles/my_message_generate_messages_py.dir/rule
+my_message/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+.PHONY : my_message/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-my_message_generate_messages_py: my_message/CMakeFiles/my_message_generate_messages_py.dir/rule
+rosgraph_msgs_generate_messages_eus: my_message/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 
-.PHONY : my_message_generate_messages_py
+.PHONY : rosgraph_msgs_generate_messages_eus
 
 # fast build rule for target.
-my_message_generate_messages_py/fast:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_generate_messages_py.dir/build.make my_message/CMakeFiles/my_message_generate_messages_py.dir/build
-.PHONY : my_message_generate_messages_py/fast
-
-# Convenience name for target.
-my_message/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : my_message/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_cpp: my_message/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-.PHONY : roscpp_generate_messages_cpp
-
-# fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make my_message/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
-
-# Convenience name for target.
-my_message/CMakeFiles/_my_message_generate_messages_check_deps_my_message.dir/rule:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/_my_message_generate_messages_check_deps_my_message.dir/rule
-.PHONY : my_message/CMakeFiles/_my_message_generate_messages_check_deps_my_message.dir/rule
-
-# Convenience name for target.
-_my_message_generate_messages_check_deps_my_message: my_message/CMakeFiles/_my_message_generate_messages_check_deps_my_message.dir/rule
-
-.PHONY : _my_message_generate_messages_check_deps_my_message
-
-# fast build rule for target.
-_my_message_generate_messages_check_deps_my_message/fast:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/_my_message_generate_messages_check_deps_my_message.dir/build.make my_message/CMakeFiles/_my_message_generate_messages_check_deps_my_message.dir/build
-.PHONY : _my_message_generate_messages_check_deps_my_message/fast
-
-# Convenience name for target.
-my_message/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : my_message/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: my_message/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-.PHONY : roscpp_generate_messages_py
-
-# fast build rule for target.
-roscpp_generate_messages_py/fast:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/roscpp_generate_messages_py.dir/build.make my_message/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
-
-# Convenience name for target.
-my_message/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : my_message/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: my_message/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make my_message/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
+rosgraph_msgs_generate_messages_eus/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make my_message/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+.PHONY : rosgraph_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 my_message/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
@@ -273,34 +213,184 @@ std_msgs_generate_messages_cpp/fast:
 .PHONY : std_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-my_message/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : my_message/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+my_message/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+.PHONY : my_message/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: my_message/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+roscpp_generate_messages_nodejs: my_message/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 
-.PHONY : rosgraph_msgs_generate_messages_lisp
+.PHONY : roscpp_generate_messages_nodejs
 
 # fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make my_message/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+roscpp_generate_messages_nodejs/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make my_message/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+.PHONY : roscpp_generate_messages_nodejs/fast
 
 # Convenience name for target.
-my_message/CMakeFiles/my_message_genlisp.dir/rule:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_genlisp.dir/rule
-.PHONY : my_message/CMakeFiles/my_message_genlisp.dir/rule
+my_message/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+.PHONY : my_message/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-my_message_genlisp: my_message/CMakeFiles/my_message_genlisp.dir/rule
+std_msgs_generate_messages_eus: my_message/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
 
-.PHONY : my_message_genlisp
+.PHONY : std_msgs_generate_messages_eus
 
 # fast build rule for target.
-my_message_genlisp/fast:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_genlisp.dir/build.make my_message/CMakeFiles/my_message_genlisp.dir/build
-.PHONY : my_message_genlisp/fast
+std_msgs_generate_messages_eus/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make my_message/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+.PHONY : std_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+my_message/CMakeFiles/roscpp_generate_messages_py.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/roscpp_generate_messages_py.dir/rule
+.PHONY : my_message/CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_py: my_message/CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+.PHONY : roscpp_generate_messages_py
+
+# fast build rule for target.
+roscpp_generate_messages_py/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/roscpp_generate_messages_py.dir/build.make my_message/CMakeFiles/roscpp_generate_messages_py.dir/build
+.PHONY : roscpp_generate_messages_py/fast
+
+# Convenience name for target.
+my_message/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+.PHONY : my_message/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_lisp: my_message/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : std_msgs_generate_messages_lisp
+
+# fast build rule for target.
+std_msgs_generate_messages_lisp/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make my_message/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+.PHONY : std_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+my_message/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+.PHONY : my_message/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_nodejs: my_message/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_nodejs/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make my_message/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+my_message/CMakeFiles/my_message_generate_messages_cpp.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_generate_messages_cpp.dir/rule
+.PHONY : my_message/CMakeFiles/my_message_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+my_message_generate_messages_cpp: my_message/CMakeFiles/my_message_generate_messages_cpp.dir/rule
+
+.PHONY : my_message_generate_messages_cpp
+
+# fast build rule for target.
+my_message_generate_messages_cpp/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_generate_messages_cpp.dir/build.make my_message/CMakeFiles/my_message_generate_messages_cpp.dir/build
+.PHONY : my_message_generate_messages_cpp/fast
+
+# Convenience name for target.
+my_message/CMakeFiles/my_message_gencpp.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_gencpp.dir/rule
+.PHONY : my_message/CMakeFiles/my_message_gencpp.dir/rule
+
+# Convenience name for target.
+my_message_gencpp: my_message/CMakeFiles/my_message_gencpp.dir/rule
+
+.PHONY : my_message_gencpp
+
+# fast build rule for target.
+my_message_gencpp/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_gencpp.dir/build.make my_message/CMakeFiles/my_message_gencpp.dir/build
+.PHONY : my_message_gencpp/fast
+
+# Convenience name for target.
+my_message/CMakeFiles/my_message_generate_messages_lisp.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_generate_messages_lisp.dir/rule
+.PHONY : my_message/CMakeFiles/my_message_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+my_message_generate_messages_lisp: my_message/CMakeFiles/my_message_generate_messages_lisp.dir/rule
+
+.PHONY : my_message_generate_messages_lisp
+
+# fast build rule for target.
+my_message_generate_messages_lisp/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_generate_messages_lisp.dir/build.make my_message/CMakeFiles/my_message_generate_messages_lisp.dir/build
+.PHONY : my_message_generate_messages_lisp/fast
+
+# Convenience name for target.
+my_message/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+.PHONY : my_message/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_eus: my_message/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+.PHONY : roscpp_generate_messages_eus
+
+# fast build rule for target.
+roscpp_generate_messages_eus/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/roscpp_generate_messages_eus.dir/build.make my_message/CMakeFiles/roscpp_generate_messages_eus.dir/build
+.PHONY : roscpp_generate_messages_eus/fast
+
+# Convenience name for target.
+my_message/CMakeFiles/my_message_generate_messages.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_generate_messages.dir/rule
+.PHONY : my_message/CMakeFiles/my_message_generate_messages.dir/rule
+
+# Convenience name for target.
+my_message_generate_messages: my_message/CMakeFiles/my_message_generate_messages.dir/rule
+
+.PHONY : my_message_generate_messages
+
+# fast build rule for target.
+my_message_generate_messages/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_generate_messages.dir/build.make my_message/CMakeFiles/my_message_generate_messages.dir/build
+.PHONY : my_message_generate_messages/fast
+
+# Convenience name for target.
+my_message/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+.PHONY : my_message/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_cpp: my_message/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+.PHONY : roscpp_generate_messages_cpp
+
+# fast build rule for target.
+roscpp_generate_messages_cpp/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make my_message/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+.PHONY : roscpp_generate_messages_cpp/fast
+
+# Convenience name for target.
+my_message/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+.PHONY : my_message/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_nodejs: my_message/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : std_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+std_msgs_generate_messages_nodejs/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make my_message/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+.PHONY : std_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 my_message/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
@@ -333,94 +423,154 @@ roscpp_generate_messages_lisp/fast:
 .PHONY : roscpp_generate_messages_lisp/fast
 
 # Convenience name for target.
-my_message/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : my_message/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+my_message/CMakeFiles/my_message_genlisp.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_genlisp.dir/rule
+.PHONY : my_message/CMakeFiles/my_message_genlisp.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_py: my_message/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+my_message_genlisp: my_message/CMakeFiles/my_message_genlisp.dir/rule
 
-.PHONY : rosgraph_msgs_generate_messages_py
+.PHONY : my_message_genlisp
 
 # fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make my_message/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
+my_message_genlisp/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_genlisp.dir/build.make my_message/CMakeFiles/my_message_genlisp.dir/build
+.PHONY : my_message_genlisp/fast
 
 # Convenience name for target.
-my_message/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : my_message/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+my_message/CMakeFiles/my_message_generate_messages_eus.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_generate_messages_eus.dir/rule
+.PHONY : my_message/CMakeFiles/my_message_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_lisp: my_message/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+my_message_generate_messages_eus: my_message/CMakeFiles/my_message_generate_messages_eus.dir/rule
 
-.PHONY : std_msgs_generate_messages_lisp
+.PHONY : my_message_generate_messages_eus
 
 # fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make my_message/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
+my_message_generate_messages_eus/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_generate_messages_eus.dir/build.make my_message/CMakeFiles/my_message_generate_messages_eus.dir/build
+.PHONY : my_message_generate_messages_eus/fast
 
 # Convenience name for target.
-my_message/CMakeFiles/my_message_generate_messages.dir/rule:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_generate_messages.dir/rule
-.PHONY : my_message/CMakeFiles/my_message_generate_messages.dir/rule
+my_message/CMakeFiles/my_message_geneus.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_geneus.dir/rule
+.PHONY : my_message/CMakeFiles/my_message_geneus.dir/rule
 
 # Convenience name for target.
-my_message_generate_messages: my_message/CMakeFiles/my_message_generate_messages.dir/rule
+my_message_geneus: my_message/CMakeFiles/my_message_geneus.dir/rule
 
-.PHONY : my_message_generate_messages
+.PHONY : my_message_geneus
 
 # fast build rule for target.
-my_message_generate_messages/fast:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_generate_messages.dir/build.make my_message/CMakeFiles/my_message_generate_messages.dir/build
-.PHONY : my_message_generate_messages/fast
+my_message_geneus/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_geneus.dir/build.make my_message/CMakeFiles/my_message_geneus.dir/build
+.PHONY : my_message_geneus/fast
 
 # Convenience name for target.
-my_message/CMakeFiles/my_message_generate_messages_lisp.dir/rule:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_generate_messages_lisp.dir/rule
-.PHONY : my_message/CMakeFiles/my_message_generate_messages_lisp.dir/rule
+my_message/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+.PHONY : my_message/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-my_message_generate_messages_lisp: my_message/CMakeFiles/my_message_generate_messages_lisp.dir/rule
+rosgraph_msgs_generate_messages_lisp: my_message/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : my_message_generate_messages_lisp
+.PHONY : rosgraph_msgs_generate_messages_lisp
 
 # fast build rule for target.
-my_message_generate_messages_lisp/fast:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_generate_messages_lisp.dir/build.make my_message/CMakeFiles/my_message_generate_messages_lisp.dir/build
-.PHONY : my_message_generate_messages_lisp/fast
+rosgraph_msgs_generate_messages_lisp/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make my_message/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-my_message/CMakeFiles/my_message_generate_messages_cpp.dir/rule:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_generate_messages_cpp.dir/rule
-.PHONY : my_message/CMakeFiles/my_message_generate_messages_cpp.dir/rule
+my_message/CMakeFiles/my_message_generate_messages_nodejs.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_generate_messages_nodejs.dir/rule
+.PHONY : my_message/CMakeFiles/my_message_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-my_message_generate_messages_cpp: my_message/CMakeFiles/my_message_generate_messages_cpp.dir/rule
+my_message_generate_messages_nodejs: my_message/CMakeFiles/my_message_generate_messages_nodejs.dir/rule
 
-.PHONY : my_message_generate_messages_cpp
+.PHONY : my_message_generate_messages_nodejs
 
 # fast build rule for target.
-my_message_generate_messages_cpp/fast:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_generate_messages_cpp.dir/build.make my_message/CMakeFiles/my_message_generate_messages_cpp.dir/build
-.PHONY : my_message_generate_messages_cpp/fast
+my_message_generate_messages_nodejs/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_generate_messages_nodejs.dir/build.make my_message/CMakeFiles/my_message_generate_messages_nodejs.dir/build
+.PHONY : my_message_generate_messages_nodejs/fast
 
 # Convenience name for target.
-my_message/CMakeFiles/my_message_gencpp.dir/rule:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_gencpp.dir/rule
-.PHONY : my_message/CMakeFiles/my_message_gencpp.dir/rule
+my_message/CMakeFiles/my_message_generate_messages_py.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_generate_messages_py.dir/rule
+.PHONY : my_message/CMakeFiles/my_message_generate_messages_py.dir/rule
 
 # Convenience name for target.
-my_message_gencpp: my_message/CMakeFiles/my_message_gencpp.dir/rule
+my_message_generate_messages_py: my_message/CMakeFiles/my_message_generate_messages_py.dir/rule
 
-.PHONY : my_message_gencpp
+.PHONY : my_message_generate_messages_py
 
 # fast build rule for target.
-my_message_gencpp/fast:
-	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_gencpp.dir/build.make my_message/CMakeFiles/my_message_gencpp.dir/build
-.PHONY : my_message_gencpp/fast
+my_message_generate_messages_py/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_generate_messages_py.dir/build.make my_message/CMakeFiles/my_message_generate_messages_py.dir/build
+.PHONY : my_message_generate_messages_py/fast
+
+# Convenience name for target.
+my_message/CMakeFiles/my_message_gennodejs.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_gennodejs.dir/rule
+.PHONY : my_message/CMakeFiles/my_message_gennodejs.dir/rule
+
+# Convenience name for target.
+my_message_gennodejs: my_message/CMakeFiles/my_message_gennodejs.dir/rule
+
+.PHONY : my_message_gennodejs
+
+# fast build rule for target.
+my_message_gennodejs/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_gennodejs.dir/build.make my_message/CMakeFiles/my_message_gennodejs.dir/build
+.PHONY : my_message_gennodejs/fast
+
+# Convenience name for target.
+my_message/CMakeFiles/my_message_genpy.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/my_message_genpy.dir/rule
+.PHONY : my_message/CMakeFiles/my_message_genpy.dir/rule
+
+# Convenience name for target.
+my_message_genpy: my_message/CMakeFiles/my_message_genpy.dir/rule
+
+.PHONY : my_message_genpy
+
+# fast build rule for target.
+my_message_genpy/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/my_message_genpy.dir/build.make my_message/CMakeFiles/my_message_genpy.dir/build
+.PHONY : my_message_genpy/fast
+
+# Convenience name for target.
+my_message/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+.PHONY : my_message/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_cpp: my_message/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_cpp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_cpp/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make my_message/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+my_message/CMakeFiles/_my_message_generate_messages_check_deps_my_message.dir/rule:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f CMakeFiles/Makefile2 my_message/CMakeFiles/_my_message_generate_messages_check_deps_my_message.dir/rule
+.PHONY : my_message/CMakeFiles/_my_message_generate_messages_check_deps_my_message.dir/rule
+
+# Convenience name for target.
+_my_message_generate_messages_check_deps_my_message: my_message/CMakeFiles/_my_message_generate_messages_check_deps_my_message.dir/rule
+
+.PHONY : _my_message_generate_messages_check_deps_my_message
+
+# fast build rule for target.
+_my_message_generate_messages_check_deps_my_message/fast:
+	cd /home/devlon/raspberry-pi/ros_stuff/build && $(MAKE) -f my_message/CMakeFiles/_my_message_generate_messages_check_deps_my_message.dir/build.make my_message/CMakeFiles/_my_message_generate_messages_check_deps_my_message.dir/build
+.PHONY : _my_message_generate_messages_check_deps_my_message/fast
 
 # Help Target
 help:
@@ -428,30 +578,40 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/local"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... test"
-	@echo "... my_message_genpy"
-	@echo "... my_message_generate_messages_py"
-	@echo "... roscpp_generate_messages_cpp"
-	@echo "... _my_message_generate_messages_check_deps_my_message"
-	@echo "... roscpp_generate_messages_py"
-	@echo "... install"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... install/strip"
-	@echo "... std_msgs_generate_messages_cpp"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... my_message_genlisp"
-	@echo "... std_msgs_generate_messages_py"
-	@echo "... roscpp_generate_messages_lisp"
-	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... install"
 	@echo "... list_install_components"
+	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... install/local"
+	@echo "... rosgraph_msgs_generate_messages_eus"
+	@echo "... std_msgs_generate_messages_cpp"
+	@echo "... roscpp_generate_messages_nodejs"
+	@echo "... std_msgs_generate_messages_eus"
+	@echo "... roscpp_generate_messages_py"
 	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... my_message_generate_messages"
-	@echo "... my_message_generate_messages_lisp"
+	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... my_message_generate_messages_cpp"
 	@echo "... my_message_gencpp"
+	@echo "... my_message_generate_messages_lisp"
+	@echo "... rebuild_cache"
+	@echo "... roscpp_generate_messages_eus"
+	@echo "... my_message_generate_messages"
+	@echo "... roscpp_generate_messages_cpp"
+	@echo "... std_msgs_generate_messages_nodejs"
+	@echo "... std_msgs_generate_messages_py"
+	@echo "... roscpp_generate_messages_lisp"
+	@echo "... my_message_genlisp"
+	@echo "... my_message_generate_messages_eus"
+	@echo "... my_message_geneus"
+	@echo "... rosgraph_msgs_generate_messages_lisp"
+	@echo "... my_message_generate_messages_nodejs"
+	@echo "... my_message_generate_messages_py"
+	@echo "... my_message_gennodejs"
+	@echo "... my_message_genpy"
+	@echo "... rosgraph_msgs_generate_messages_cpp"
+	@echo "... _my_message_generate_messages_check_deps_my_message"
+	@echo "... test"
+	@echo "... edit_cache"
 .PHONY : help
 
 

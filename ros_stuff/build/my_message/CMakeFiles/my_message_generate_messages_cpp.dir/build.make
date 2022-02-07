@@ -56,11 +56,11 @@ include my_message/CMakeFiles/my_message_generate_messages_cpp.dir/progress.make
 my_message/CMakeFiles/my_message_generate_messages_cpp: /home/devlon/raspberry-pi/ros_stuff/devel/include/my_message/my_message.h
 
 
-/home/devlon/raspberry-pi/ros_stuff/devel/include/my_message/my_message.h: /usr/lib/gencpp/gen_cpp.py
+/home/devlon/raspberry-pi/ros_stuff/devel/include/my_message/my_message.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
 /home/devlon/raspberry-pi/ros_stuff/devel/include/my_message/my_message.h: /home/devlon/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg
-/home/devlon/raspberry-pi/ros_stuff/devel/include/my_message/my_message.h: /usr/share/gencpp/msg.h.template
+/home/devlon/raspberry-pi/ros_stuff/devel/include/my_message/my_message.h: /opt/ros/noetic/share/gencpp/msg.h.template
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/devlon/raspberry-pi/ros_stuff/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from my_message/my_message.msg"
-	cd /home/devlon/raspberry-pi/ros_stuff/src/my_message && /home/devlon/raspberry-pi/ros_stuff/build/catkin_generated/env_cached.sh /usr/bin/python3 /usr/lib/gencpp/gen_cpp.py /home/devlon/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg -Imy_message:/home/devlon/raspberry-pi/ros_stuff/src/my_message/msg -Istd_msgs:/usr/share/std_msgs/cmake/../msg -p my_message -o /home/devlon/raspberry-pi/ros_stuff/devel/include/my_message -e /usr/share/gencpp/cmake/..
+	cd /home/devlon/raspberry-pi/ros_stuff/src/my_message && /home/devlon/raspberry-pi/ros_stuff/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/devlon/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg -Imy_message:/home/devlon/raspberry-pi/ros_stuff/src/my_message/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p my_message -o /home/devlon/raspberry-pi/ros_stuff/devel/include/my_message -e /opt/ros/noetic/share/gencpp/cmake/..
 
 my_message_generate_messages_cpp: my_message/CMakeFiles/my_message_generate_messages_cpp
 my_message_generate_messages_cpp: /home/devlon/raspberry-pi/ros_stuff/devel/include/my_message/my_message.h

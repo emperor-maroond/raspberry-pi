@@ -23,6 +23,9 @@ offset = 0
 msg_arr = []
 boom = 1
 a = time()
+
+max = 0
+tmp3 = 0
 if  __name__ == '__main__':
     try:  
         while True:       
@@ -52,11 +55,21 @@ if  __name__ == '__main__':
             servo_R.angle = 180 - (90 + offset)
             servo_L.angle = (90 + offset)
 
+            if tmp3 > max:
+                max = tmp3
+
+            sol1_pin.on() # IN
+            sol2_pin.off() # OUT
+            sol3_pin.off() # IN
+            sol4_pin.on() # O 
+
+            print(max)
+
     except KeyboardInterrupt:
-        ser.close()
+        # ser.close()
         sol1_pin.off() # IN
         sol2_pin.off() # OUT
         sol3_pin.off() # IN
         sol4_pin.off() # OUT
-        print("Bye bye")
+        # print(max)
 

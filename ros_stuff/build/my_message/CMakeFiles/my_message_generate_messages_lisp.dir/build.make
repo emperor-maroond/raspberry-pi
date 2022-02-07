@@ -56,10 +56,10 @@ include my_message/CMakeFiles/my_message_generate_messages_lisp.dir/progress.mak
 my_message/CMakeFiles/my_message_generate_messages_lisp: /home/devlon/raspberry-pi/ros_stuff/devel/share/common-lisp/ros/my_message/msg/my_message.lisp
 
 
-/home/devlon/raspberry-pi/ros_stuff/devel/share/common-lisp/ros/my_message/msg/my_message.lisp: /usr/lib/genlisp/gen_lisp.py
+/home/devlon/raspberry-pi/ros_stuff/devel/share/common-lisp/ros/my_message/msg/my_message.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
 /home/devlon/raspberry-pi/ros_stuff/devel/share/common-lisp/ros/my_message/msg/my_message.lisp: /home/devlon/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/devlon/raspberry-pi/ros_stuff/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Lisp code from my_message/my_message.msg"
-	cd /home/devlon/raspberry-pi/ros_stuff/build/my_message && ../catkin_generated/env_cached.sh /usr/bin/python3 /usr/lib/genlisp/gen_lisp.py /home/devlon/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg -Imy_message:/home/devlon/raspberry-pi/ros_stuff/src/my_message/msg -Istd_msgs:/usr/share/std_msgs/cmake/../msg -p my_message -o /home/devlon/raspberry-pi/ros_stuff/devel/share/common-lisp/ros/my_message/msg
+	cd /home/devlon/raspberry-pi/ros_stuff/build/my_message && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/devlon/raspberry-pi/ros_stuff/src/my_message/msg/my_message.msg -Imy_message:/home/devlon/raspberry-pi/ros_stuff/src/my_message/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p my_message -o /home/devlon/raspberry-pi/ros_stuff/devel/share/common-lisp/ros/my_message/msg
 
 my_message_generate_messages_lisp: my_message/CMakeFiles/my_message_generate_messages_lisp
 my_message_generate_messages_lisp: /home/devlon/raspberry-pi/ros_stuff/devel/share/common-lisp/ros/my_message/msg/my_message.lisp

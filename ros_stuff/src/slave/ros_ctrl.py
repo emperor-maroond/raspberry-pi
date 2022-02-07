@@ -3,7 +3,6 @@
 
 import numpy as np
 import rospy as rp
-import serial
 import gpiozero
 
 from gpiozero.pins.pigpio import PiGPIOFactory
@@ -34,10 +33,14 @@ sol4_pin.off()
 
 # Functions_____________________________________________________________________________________________________
 offset = 0
+servo_right    = np.pi/2
+servo_left     = np.pi/2
+solenoid_right = 0
+solenoid_left  = 0
 
 def destroy():
-    servo_R.angle = 90
-    servo_L.angle = 90
+    servo_R.angle = None
+    servo_L.angle = None
     sol1_pin.off()
     sol2_pin.off() 
     sol3_pin.off()
@@ -48,17 +51,19 @@ def r2d(rad):
 
 # Callback ______________________________________________________________________________________________________
 def callback(data):
+    global servo_right, servo_left, solenoid_right, solenoid_left
     servo_right    = data.some_floats[0]
     servo_left     = data.some_floats[1]
     solenoid_right = data.some_floats[2]
     solenoid_left  = data.some_floats[3]
+    # rate.sleep()
 
-    # rp.loginfo(r2d(offset))
+def feedback(info):
+    global offset
+    offset = info.some_floats[2]
+
     servo_R.angle = 180 - (r2d(servo_right) + offset)
-    # print(180 - r2d(servo_right), r2d(servo_left))
     servo_L.angle = r2d(servo_left) + offset
-
-    # print(180 - r2d(servo_right + offset), r2d(servo_left + offset), r2d(offset))
 
     if(solenoid_right == -1):
         sol1_pin.on()
@@ -77,13 +82,6 @@ def callback(data):
     if(solenoid_left == 1):
         sol3_pin.off()
         sol4_pin.on()  
-
-    # rate.sleep()
-
-def feedback(info):
-    global offset
-    offset = info.some_floats[2]
-    # rp.loginfo(info)
 
 def listener():
     try:

@@ -10,7 +10,7 @@
 #define Encoder_2B 9 // A2
 #define LED 13
 
-#define V_Line 0
+#define V_Line 11
 #define Reset_Enc 12
 
 Encoder enc1(Encoder_1A, Encoder_1B);
@@ -24,7 +24,7 @@ void setup() {
   pinMode(V_Line, OUTPUT);
   pinMode(Reset_Enc, INPUT);
   digitalWrite(LED, HIGH);
-  digitalWrite(V_Line, LOW);
+  digitalWrite(V_Line, HIGH);
 }
 
 long pos1 = -999;
@@ -36,6 +36,7 @@ float volt_L = 0;
 float tmp1 = 0;
 float tmp2 = 0;
 float divider = 0;
+bool h = 1; 
 
 void loop() {
   long new1, new2; 
@@ -47,7 +48,7 @@ void loop() {
     pos2 = new2;
   }
   
-  if(digitalRead(Reset_Enc) == LOW){
+  if(digitalRead(Reset_Enc) == HIGH){
     enc1.write(0);
     enc2.write(0);
   }
@@ -58,9 +59,9 @@ void loop() {
   tmp2 = tmp2 + pos2;
   divider ++;
   
-  if(i >= 0){
+  if(i >= 15){
     Serial.print("a");
-    Serial.println(volt_R/divider); 
+    Serial.println(180 - volt_R/divider); 
     Serial.print("b");
     Serial.println(volt_L/divider); 
     Serial.print("c");  
@@ -74,6 +75,15 @@ void loop() {
     tmp1 = 0;
     tmp2 = 0;
     divider = 0;
+    if(h==1){
+      digitalWrite(LED, LOW);
+      h = 0;
+    }
+    else{
+      digitalWrite(LED, HIGH);
+      h = 1;
+    }
+    
   }
 //  delay(100);
 }
