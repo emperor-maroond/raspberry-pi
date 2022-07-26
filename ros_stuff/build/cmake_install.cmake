@@ -37,6 +37,11 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
+# Set default install directory permissions.
+if(NOT DEFINED CMAKE_OBJDUMP)
+  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+endif()
+
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   
       if (NOT EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}")
@@ -56,7 +61,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/devlon/raspberry-pi/ros_stuff/install" TYPE PROGRAM FILES "/home/devlon/raspberry-pi/ros_stuff/build/catkin_generated/installspace/_setup_util.py")
+  file(INSTALL DESTINATION "/home/devlon/raspberry-pi/ros_stuff/install" TYPE PROGRAM FILES "/home/devlon/raspberry-pi/ros_stuff/build/catkin_generated/installspace/_setup_util.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -68,7 +73,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/devlon/raspberry-pi/ros_stuff/install" TYPE PROGRAM FILES "/home/devlon/raspberry-pi/ros_stuff/build/catkin_generated/installspace/env.sh")
+  file(INSTALL DESTINATION "/home/devlon/raspberry-pi/ros_stuff/install" TYPE PROGRAM FILES "/home/devlon/raspberry-pi/ros_stuff/build/catkin_generated/installspace/env.sh")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -80,7 +85,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/devlon/raspberry-pi/ros_stuff/install" TYPE FILE FILES
+  file(INSTALL DESTINATION "/home/devlon/raspberry-pi/ros_stuff/install" TYPE FILE FILES
     "/home/devlon/raspberry-pi/ros_stuff/build/catkin_generated/installspace/setup.bash"
     "/home/devlon/raspberry-pi/ros_stuff/build/catkin_generated/installspace/local_setup.bash"
     )
@@ -95,7 +100,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/devlon/raspberry-pi/ros_stuff/install" TYPE FILE FILES
+  file(INSTALL DESTINATION "/home/devlon/raspberry-pi/ros_stuff/install" TYPE FILE FILES
     "/home/devlon/raspberry-pi/ros_stuff/build/catkin_generated/installspace/setup.sh"
     "/home/devlon/raspberry-pi/ros_stuff/build/catkin_generated/installspace/local_setup.sh"
     )
@@ -110,7 +115,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/devlon/raspberry-pi/ros_stuff/install" TYPE FILE FILES
+  file(INSTALL DESTINATION "/home/devlon/raspberry-pi/ros_stuff/install" TYPE FILE FILES
     "/home/devlon/raspberry-pi/ros_stuff/build/catkin_generated/installspace/setup.zsh"
     "/home/devlon/raspberry-pi/ros_stuff/build/catkin_generated/installspace/local_setup.zsh"
     )
@@ -125,12 +130,11 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/devlon/raspberry-pi/ros_stuff/install" TYPE FILE FILES "/home/devlon/raspberry-pi/ros_stuff/build/catkin_generated/installspace/.rosinstall")
+  file(INSTALL DESTINATION "/home/devlon/raspberry-pi/ros_stuff/install" TYPE FILE FILES "/home/devlon/raspberry-pi/ros_stuff/build/catkin_generated/installspace/.rosinstall")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/devlon/raspberry-pi/ros_stuff/build/gtest/cmake_install.cmake")
   include("/home/devlon/raspberry-pi/ros_stuff/build/my_message/cmake_install.cmake")
   include("/home/devlon/raspberry-pi/ros_stuff/build/slave/cmake_install.cmake")
 

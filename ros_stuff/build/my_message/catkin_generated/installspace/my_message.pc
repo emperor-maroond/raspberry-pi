@@ -4,5 +4,5 @@ Name: my_message
 Description: Description of my_message
 Version: 0.0.0
 Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib 
+Libs: 
 Requires: message_runtime

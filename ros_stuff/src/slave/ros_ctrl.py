@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 import numpy as np
 import rospy as rp
 import gpiozero
@@ -32,7 +31,8 @@ sol3_pin.off()
 sol4_pin.off() 
 
 # Functions_____________________________________________________________________________________________________
-offset = 0
+offset = 0.0
+height = 0.0
 servo_right    = np.pi/180*(90-20) #np.pi/2
 servo_left     = np.pi/180*(90+20) #np.pi/2
 solenoid_right = -1
@@ -59,13 +59,31 @@ def callback(data):
     # rate.sleep()
 
 def feedback(info):
-    global offset
-    offset = info.some_floats[2]
+    global offset, height
+    # offset = info.some_floats[2]
 
     # print(info.some_floats[0], info.some_floats[1], info.some_floats[2], info.some_floats[3],info.some_floats[4])
 
-    servo_R.angle = 180 - (r2d(servo_right) + offset)
-    servo_L.angle = r2d(servo_left) + offset
+    height = 0.84 * np.sin(np.pi/180.0*info.some_floats[2])
+
+    if height > 95/1000:
+        offset = 90 - info.some_floats[4]
+
+    # print(height, offset)
+
+    angR = 180 - (r2d(servo_right) + offset)
+    if angR > 180.0:
+        angR = 180
+    if angR < 0.0:
+        angR = 0
+    angL = r2d(servo_left) + offset
+    if angL > 180.0:
+        angL = 180
+    if angL < 0.0:
+        angL = 0
+
+    servo_R.angle = angR
+    servo_L.angle = angL
 
     if(solenoid_right == -1):
         sol1_pin.on()

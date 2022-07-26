@@ -1,1 +1,1 @@
-set(ORDERED_PATHS "/opt/ros/noetic/lib")
+set(ORDERED_PATHS "/usr/lib/aarch64-linux-gnu")
